@@ -3,12 +3,13 @@ layout: post
 cover: 'assets/images/cover7.jpg'
 title: Triển khai GCM với Android
 date:   2016-01-14 10:18:00
-tags: android
+tags: android, gcm
 subclass: 'post tag-test tag-content'
 categories: 'hungdh'
 navigation: True
 logo: 'assets/images/ghost.png'
 ---
+
 Bạn có một ứng dụng, bạn muốn gửi thông báo cho tất cả client mà không muốn mất phí.
 Điều đó hoàn toàn có thể thực hiện được nếu bạn sử dụng dịch vụ Google Cloud Messaging (GCM) do Google cung cấp.
 GCM là dịch vụ giúp bạn tương tác giữa client - server thông qua máy chủ GCM.
@@ -64,7 +65,7 @@ Cuối cùng là tải file `google-service.json`, và di chuyển vào thư m�
 1. Tạo file `config.php` để lưu thông tin về database và google api key.
 
 
-{% highlight php}
+{% highlight php linenos %}
 <?php
 /**
  * Database config variables
@@ -79,22 +80,6 @@ define("DB_DATABASE", "gcm");
 define("GOOGLE_API_KEY", "AIzaSyA7mqASFSAFASFSAEbDDEpDpJ6kViqJE"); 
 ?>
 {% endhighlight %}
-
-```
-<?php
-/**
- * Database config variables
- */
-define("DB_HOST", "localhost");
-define("DB_USER", "root");
-define("DB_PASSWORD", "123456");
-define("DB_DATABASE", "gcm");
-/*
- * Google API Key
- */
-define("GOOGLE_API_KEY", "AIzaSyA7mqASFSAFASFSAEbDDEpDpJ6kViqJE"); 
-?>
-```
 
 <script src="https://gist.github.com/hungdh0x5e/d672489ff2c48cb70ea7.js"></script>
 2. Một file khác `db_connect.php` để tiến hành kết nối với CSDL (bao gồm việc open và close).
