@@ -39,7 +39,6 @@ Quá trình hoạt động như sau:
 Kết quả thu được:
 ![Đăng kí API cho ứng dụng](/assets/images/2016/01/gcm-registration-api-2.png)
 Bạn có thể thấy 2 giá trị mà mình cần sử dụng: **Server API Key** (đươc sử dụng khi server gửi yêu cầu tới GCM server), **Sender ID** (dùng cho client).
-
 4. Nhấn `Generate configuration files` để tạo file `google-service.json`, đây là file config được sử dụng tại client.
 Cuối cùng là tải file `google-service.json`, và di chuyển vào thư mục `/app/` trong project của bạn.
 
@@ -62,7 +61,6 @@ Cuối cùng là tải file `google-service.json`, và di chuyển vào thư m�
 **Xây dựng server**
 
 1. Tạo file `config.php` để lưu thông tin về database và google api key.
-
 
 {% highlight php linenos %}
 <?php
@@ -109,7 +107,7 @@ các tham số client cần phải gửi `name`, `email`, `registration id`.
 7. Cuối cùng là tạo file `index.php` có nhiệ̣m vụ̣ hiể̉n thị̣ danh sách các client đã đăng kí , và cho phép gửi tin nhắn tới từng thiết bị̣. Do code khá dài nên mình sẽ dẫn link để các bạn tham khảo.
 [index.php](https://gist.github.com/hungdh0x5e/a193f86ddbe2c234ba99)
 
-Như vậy là đã xây dựng xong server side, giao diện quản lý sẽ tương tự như sau
+Như vậy là đã xây dựng xong server side, giao diện quản lý sẽ tương tự như sau
 ![Giao diện quản lý](/assets/images/2016/01/gcm-admin.png)
 
 <script src="https://gist.github.com/hungdh0x5e/58ee362e8b18946f938c.js"></script>
