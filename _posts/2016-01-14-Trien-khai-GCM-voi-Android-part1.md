@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/cover7.jpg'
 title: Triển khai GCM với Android
 date:   2016-01-14 10:18:00
-tags: android, gcm
+tags: android gcm
 subclass: 'post tag-test tag-content'
 categories: 'hungdh'
 navigation: True
@@ -61,46 +61,15 @@ Cuối cùng là tải file `google-service.json`, và di chuyển vào thư m�
 **Xây dựng server**
 
 1. Tạo file `config.php` để lưu thông tin về database và google api key.
-
-{% highlight php linenos %}
-<?php
-/**
- * Database config variables
- */
-define("DB_HOST", "localhost");
-define("DB_USER", "root");
-define("DB_PASSWORD", "123456");
-define("DB_DATABASE", "gcm");
-/*
- * Google API Key
- */
-define("GOOGLE_API_KEY", "AIzaSyA7mqASFSAFASFSAEbDDEpDpJ6kViqJE"); 
-?>
-{% endhighlight %}
-
-```
-/**
- * Database config variables
- */
-define("DB_HOST", "localhost");
-define("DB_USER", "root");
-define("DB_PASSWORD", "123456");
-define("DB_DATABASE", "gcm");
-/*
- * Google API Key
- */
-define("GOOGLE_API_KEY", "AIzaSyA7mqASFSAFASFSAEbDDEpDpJ6kViqJE"); 
-```
-
 <script src="https://gist.github.com/hungdh0x5e/d672489ff2c48cb70ea7.js"></script>
-2. Một file khác `db_connect.php` để tiến hành kết nối với CSDL (bao gồm việc open và close).
+2. Một file khác `[db_connect.php](https://gist.github.com/hungdh0x5e/3383e5f729c5053d72db)` để tiến hành kết nối với CSDL (bao gồm việc open và close).
 <script src="https://gist.github.com/hungdh0x5e/3383e5f729c5053d72db.js"></script>
 3. File `db_functions.php` chứa các phương thức thao tác với CSDL như thêm mới (storeUser), lấy toàn bộ danh sách user (getAllUsers). 
 Bạn có thể xem nội dung chi tiết [tại đây](https://gist.github.com/hungdh0x5e/6f04d2e4b205d440ac1d);
 4. File `GCM.php` dùng để gửi yêu cầu thông báo tới GCM server.
 <script src="https://gist.github.com/hungdh0x5e/ff98e4007e4aec0b2aba.js"></script>
 5. Tạo file `register.php` để nhận truy vấn từ client, và lưu trữ thông tin vào trong CSDL. 
-các tham số client cần phải gửi `name`, `email`, `registration id`.
+Các tham số client cần phải gửi `name`, `email`, `registration id`.
 <script src="https://gist.github.com/hungdh0x5e/77c3836a45b76f9e58fa.js"></script>
 6. Tạo file `send_message.php` để gửi thông báo tới client thông qua GCM server.
 <script src="https://gist.github.com/hungdh0x5e/76ff3d300b1007d92de0.js"></script>
@@ -109,8 +78,6 @@ các tham số client cần phải gửi `name`, `email`, `registration id`.
 
 Như vậy là đã xây dựng xong server side, giao diện quản lý sẽ tương tự như sau
 ![Giao diện quản lý](/assets/images/2016/01/gcm-admin.png)
-
-<script src="https://gist.github.com/hungdh0x5e/58ee362e8b18946f938c.js"></script>
 
 **Lưu ý:** Chỉ xây dựng `client side` khi bạn đã xây dựng `server side` thành công.
 
