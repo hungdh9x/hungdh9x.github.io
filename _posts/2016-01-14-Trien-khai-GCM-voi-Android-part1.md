@@ -3,20 +3,19 @@ layout: post
 cover: 'assets/images/cover7.jpg'
 title: Triển khai GCM với Android
 date:   2016-01-14 10:18:00
-tags: android, gcm
+tags: android
 subclass: 'post tag-test tag-content'
 categories: 'hungdh'
 navigation: True
 logo: 'assets/images/ghost.png'
 ---
-
 Bạn có một ứng dụng, bạn muốn gửi thông báo cho tất cả client mà không muốn mất phí.
 Điều đó hoàn toàn có thể thực hiện được nếu bạn sử dụng dịch vụ Google Cloud Messaging (GCM) do Google cung cấp.
 GCM là dịch vụ giúp bạn tương tác giữa client - server thông qua máy chủ GCM.
 Trong bài viết này, mình sẽ giới thiệu, hướng dẫn các bạn các bước cơ bản để xây dựng ứng dụng Android sử dụng GCM (bao gồm cả client lẫn server).
 
 # 1. Mô hình, cách vận hành của GCM
-![Sơ đồ vận hành của GCM](/assets/images/2016/01/gcm-diagram.png)
+![Sơ đồ vận hành của GCM](/img/2016/01/gcm-diagram.png)
 
 Quá trình hoạt động như sau:
 
@@ -33,15 +32,13 @@ Quá trình hoạt động như sau:
 
 1. Truy cập tới: [https://developers.google.com/mobile/](https://developers.google.com/mobile/add?platform=android&cntapi=gcm) để tạo nhanh project.
 2. Tại đây, bạn cần nhập `App name` và `package name` vào khung tương ứng. Sau đó chọn tiếp tục.
-
-![Đăng kí API cho ứng dụng](/assets/images/2016/01/gcm-registration-api-1.png)
+![Đăng kí API cho ứng dụng](/img/2016/01/gcm-registration-api-1.png)
 
 3. Ở bước này, bạn sẽ bật các API dùng cho ứng dụng của mình (ở đây chỉ demo GCM nên mình chỉ bật Cloud Messaging) bằng cách nhấn vào `Enable Cloud Messaging`.
 Kết quả thu được:
+![Đăng kí API cho ứng dụng](/img/2016/01/gcm-registration-api-2.png)
 
-![Đăng kí API cho ứng dụng](/assets/images/2016/01/gcm-registration-api-2.png)
-
-Bạn có thể thấy 2 giá trị mà mình cần sử dụng: **Server API Key** (đươc sử dụng khi server gửi yêu cầu tới GCM server), **Sender ID** (dùng cho client).
+  Bạn có thể thấy 2 giá trị mà mình cần sử dụng: **Server API Key** (đươc sử dụng khi server gửi yêu cầu tới GCM server), **Sender ID** (dùng cho client).
 
 4. Nhấn `Generate configuration files` để tạo file `google-service.json`, đây là file config được sử dụng tại client.
 Cuối cùng là tải file `google-service.json`, và di chuyển vào thư mục `/app/` trong project của bạn.
@@ -50,11 +47,11 @@ Cuối cùng là tải file `google-service.json`, và di chuyển vào thư m�
 
 # 2. Triển khai ứng dụng.
 
-Ở trong bài viết này, mình sẽ hướng dẫn xây dựng server side trước, phía client sẽ có trong bài viết tiếp theo.
+  Ở trong bài viết này, mình sẽ hướng dẫn xây dựng server side trước, phía client sẽ có trong bài viết tiếp theo.
 
 ## 2.1 Xây dựng Server side
 
-Trong tutorial này, mình sẽ sử dụng `PHP` để xây dựng server cũng như `MySQL` làm cơ sở dữ liệu. 
+  Trong tutorial này, mình sẽ sử dụng `PHP` để xây dựng server cũng như `MySQL` làm cơ sở dữ liệu. 
 
 **Xây dựng CSDL**
 
@@ -65,6 +62,7 @@ Trong tutorial này, mình sẽ sử dụng `PHP` để xây dựng server cũng
 **Xây dựng server**
 
 1. Tạo file `config.php` để lưu thông tin về database và google api key.
+
 
 {% highlight php}
 <?php
@@ -82,6 +80,22 @@ define("GOOGLE_API_KEY", "AIzaSyA7mqASFSAFASFSAEbDDEpDpJ6kViqJE");
 ?>
 {% endhighlight %}
 
+```
+<?php
+/**
+ * Database config variables
+ */
+define("DB_HOST", "localhost");
+define("DB_USER", "root");
+define("DB_PASSWORD", "123456");
+define("DB_DATABASE", "gcm");
+/*
+ * Google API Key
+ */
+define("GOOGLE_API_KEY", "AIzaSyA7mqASFSAFASFSAEbDDEpDpJ6kViqJE"); 
+?>
+```
+
 <script src="https://gist.github.com/hungdh0x5e/d672489ff2c48cb70ea7.js"></script>
 2. Một file khác `db_connect.php` để tiến hành kết nối với CSDL (bao gồm việc open và close).
 <script src="https://gist.github.com/hungdh0x5e/3383e5f729c5053d72db.js"></script>
@@ -98,7 +112,7 @@ các tham số client cần phải gửi `name`, `email`, `registration id`.
 [index.php](https://gist.github.com/hungdh0x5e/a193f86ddbe2c234ba99)
 
 Như vậy là đã xây dựng xong server side, giao diện quản lý sẽ tương tự như sau
-![Giao diện quản lý](/assets/images/2016/01/gcm-admin.png)
+![Giao diện quản lý](/img/2016/01/gcm-admin.png)
 
 <script src="https://gist.github.com/hungdh0x5e/58ee362e8b18946f938c.js"></script>
 
