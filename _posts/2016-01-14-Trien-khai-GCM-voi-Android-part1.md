@@ -38,8 +38,7 @@ Quá trình hoạt động như sau:
 3. Ở bước này, bạn sẽ bật các API dùng cho ứng dụng của mình (ở đây chỉ demo GCM nên mình chỉ bật Cloud Messaging) bằng cách nhấn vào `Enable Cloud Messaging`.
 Kết quả thu được:
 ![Đăng kí API cho ứng dụng](/assets/images/2016/01/gcm-registration-api-2.png)
-
-  Bạn có thể thấy 2 giá trị mà mình cần sử dụng: **Server API Key** (đươc sử dụng khi server gửi yêu cầu tới GCM server), **Sender ID** (dùng cho client).
+Bạn có thể thấy 2 giá trị mà mình cần sử dụng: **Server API Key** (đươc sử dụng khi server gửi yêu cầu tới GCM server), **Sender ID** (dùng cho client).
 
 4. Nhấn `Generate configuration files` để tạo file `google-service.json`, đây là file config được sử dụng tại client.
 Cuối cùng là tải file `google-service.json`, và di chuyển vào thư mục `/app/` trong project của bạn.
@@ -48,7 +47,7 @@ Cuối cùng là tải file `google-service.json`, và di chuyển vào thư m�
 
 ## 2. Triển khai ứng dụng.
 
-  Ở trong bài viết này, mình sẽ hướng dẫn xây dựng server side trước, phía client sẽ có trong bài viết tiếp theo.
+  Trong bài viết này, mình sẽ hướng dẫn xây dựng server side trước, phía client sẽ có trong bài viết tiếp theo.
 
 ### 2.1 Xây dựng Server side
 
@@ -65,7 +64,7 @@ Cuối cùng là tải file `google-service.json`, và di chuyển vào thư m�
 1. Tạo file `config.php` để lưu thông tin về database và google api key.
 
 
-{% highlight php %}
+{% highlight php linenos %}
 <?php
 /**
  * Database config variables
@@ -80,6 +79,20 @@ define("DB_DATABASE", "gcm");
 define("GOOGLE_API_KEY", "AIzaSyA7mqASFSAFASFSAEbDDEpDpJ6kViqJE"); 
 ?>
 {% endhighlight %}
+
+```
+/**
+ * Database config variables
+ */
+define("DB_HOST", "localhost");
+define("DB_USER", "root");
+define("DB_PASSWORD", "123456");
+define("DB_DATABASE", "gcm");
+/*
+ * Google API Key
+ */
+define("GOOGLE_API_KEY", "AIzaSyA7mqASFSAFASFSAEbDDEpDpJ6kViqJE"); 
+```
 
 <script src="https://gist.github.com/hungdh0x5e/d672489ff2c48cb70ea7.js"></script>
 2. Một file khác `db_connect.php` để tiến hành kết nối với CSDL (bao gồm việc open và close).
