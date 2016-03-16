@@ -58,7 +58,7 @@ username: hungdh0x5e
 repo: hungdh0x5e.github.io
 branch: master
 relative_source: ../
-destination: ../
+destination: ../hungdh0x5e.github-pages/
 production_url:  https://hungdh0x5e.github.io/
 source_url:      https://github.com/hungdh0x5e/hungdh0x5e.github.io
 
