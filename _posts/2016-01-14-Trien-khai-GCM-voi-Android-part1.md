@@ -16,7 +16,7 @@ GCM là dịch vụ giúp bạn tương tác giữa client - server thông qua m
 Trong bài viết này, mình sẽ giới thiệu, hướng dẫn các bạn các bước cơ bản để xây dựng ứng dụng Android sử dụng GCM (bao gồm cả client lẫn server).
 
 #1. Mô hình, cách vận hành của GCM
-![Sơ đồ vận hành của GCM](/img/2016/01/gcm-diagram.png)
+![Sơ đồ vận hành của GCM](/assets/images/2016/01/gcm-diagram.png)
 
 Quá trình hoạt động như sau:
 
@@ -33,11 +33,11 @@ Quá trình hoạt động như sau:
 
 1. Truy cập tới: [https://developers.google.com/mobile/](https://developers.google.com/mobile/add?platform=android&cntapi=gcm) để tạo nhanh project.
 2. Tại đây, bạn cần nhập `App name` và `package name` vào khung tương ứng. Sau đó chọn tiếp tục.
-![Đăng kí API cho ứng dụng](/img/2016/01/gcm-registration-api-1.png)
+![Đăng kí API cho ứng dụng](/assets/images/2016/01/gcm-registration-api-1.png)
 
 3. Ở bước này, bạn sẽ bật các API dùng cho ứng dụng của mình (ở đây chỉ demo GCM nên mình chỉ bật Cloud Messaging) bằng cách nhấn vào `Enable Cloud Messaging`.
 Kết quả thu được:
-![Đăng kí API cho ứng dụng](/img/2016/01/gcm-registration-api-2.png)
+![Đăng kí API cho ứng dụng](/assets/images/2016/01/gcm-registration-api-2.png)
 
   Bạn có thể thấy 2 giá trị mà mình cần sử dụng: **Server API Key** (đươc sử dụng khi server gửi yêu cầu tới GCM server), **Sender ID** (dùng cho client).
 
@@ -97,7 +97,7 @@ các tham số client cần phải gửi `name`, `email`, `registration id`.
 [index.php](https://gist.github.com/hungdh0x5e/a193f86ddbe2c234ba99)
 
 Như vậy là đã xây dựng xong server side, giao diện quản lý sẽ tương tự như sau
-![Giao diện quản lý](/img/2016/01/gcm-admin.png)
+![Giao diện quản lý](/assets/images/2016/01/gcm-admin.png)
 
 <script src="https://gist.github.com/hungdh0x5e/58ee362e8b18946f938c.js"></script>
 
