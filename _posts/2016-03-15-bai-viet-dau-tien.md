@@ -5,7 +5,7 @@ title: Bài Viết Đầu tiên
 date:   2016-03-15 10:18:00
 tags: android
 subclass: 'post tag-test tag-content'
-categories: 'android'
+categories: 'hungdh'
 navigation: True
 logo: 'assets/images/ghost.png'
 ---
