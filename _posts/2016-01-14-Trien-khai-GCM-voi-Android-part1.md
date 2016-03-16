@@ -15,7 +15,7 @@ Bạn có một ứng dụng, bạn muốn gửi thông báo cho tất cả clie
 GCM là dịch vụ giúp bạn tương tác giữa client - server thông qua máy chủ GCM.
 Trong bài viết này, mình sẽ giới thiệu, hướng dẫn các bạn các bước cơ bản để xây dựng ứng dụng Android sử dụng GCM (bao gồm cả client lẫn server).
 
-#1 Mô hình, cách vận hành của GCM
+# 1. Mô hình, cách vận hành của GCM
 ![Sơ đồ vận hành của GCM](/assets/images/2016/01/gcm-diagram.png)
 
 Quá trình hoạt động như sau:
@@ -48,11 +48,11 @@ Cuối cùng là tải file `google-service.json`, và di chuyển vào thư m�
 
   Bạn có thể tham khảo tài liệu hướng dẫn chính thức của Google [tại đây](https://developers.google.com/cloud-messaging/android/client?configured=true)
 
-#2 Triển khai ứng dụng.
+# 2. Triển khai ứng dụng.
 
 Ở trong bài viết này, mình sẽ hướng dẫn xây dựng server side trước, phía client sẽ có trong bài viết tiếp theo.
 
-##2.1 Xây dựng Server side
+## 2.1 Xây dựng Server side
 
 Trong tutorial này, mình sẽ sử dụng `PHP` để xây dựng server cũng như `MySQL` làm cơ sở dữ liệu. 
 
