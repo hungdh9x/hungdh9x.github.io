@@ -84,7 +84,6 @@ $RECYCLE.BIN/
 *.lnk.
 # =================
 # Jekyll build
-/_site/
 .jekyll-metadata
 #Gemfile.lock
 
