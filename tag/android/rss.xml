@@ -6,31 +6,11 @@
       <title>https://hungdh.me/</title>
    
    <link>https://hungdh.me/</link>
-   <description>A beautiful narrative written with the world's most elegant publishing platform. The story begins here.</description>
+   <description>If you can't explain it simply, you don't understand it well enought</description>
    <language>en-uk</language>
    <managingEditor> Đỗ Huy Hùng</managingEditor>
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
-	<item>
-	  <title>Bài Viết Đầu tiên</title>
-	  <link>//bai-viet-dau-tien</link>
-	  <author>Đỗ Huy Hùng</author>
-	  <pubDate>2016-03-15T17:18:00+07:00</pubDate>
-	  <guid>//bai-viet-dau-tien</guid>
-	  <description><![CDATA[
-	     <p>Đây là nội dung mình sẽ viết, nó chỉ có thế <code class="highlighter-rouge">này</code> thôi, hoặc như này <strong>hihi</strong></p>
-
-<h1 id="muahaha">Muahaha</h1>
-
-<h2 id="ahihi">ahihi</h2>
-
-<h4 id="no-problem">No problem</h4>
-
-<p>Kết thúc rồi.</p>
-
-	  ]]></description>
-	</item>
-
 	<item>
 	  <title>Triển khai GCM với Android</title>
 	  <link>//Trien-khai-GCM-voi-Android-part1</link>
