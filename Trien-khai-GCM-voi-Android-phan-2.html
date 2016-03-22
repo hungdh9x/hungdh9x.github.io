@@ -1,24 +1,130 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-<channel>
-   
-      <title>https://hungdh.me/</title>
-   
-   <link>https://hungdh.me/</link>
-   <description>If you can't explain it simply, you don't understand it well enought</description>
-   <language>en-uk</language>
-   <managingEditor> Đỗ Huy Hùng</managingEditor>
-   <atom:link href="rss" rel="self" type="application/rss+xml" />
-   
-	<item>
-	  <title>Triển khai GCM với Android (Phần 2)</title>
-	  <link>//Trien-khai-GCM-voi-Android-phan-2</link>
-	  <author>Đỗ Huy Hùng</author>
-	  <pubDate>2016-01-14T18:18:00+07:00</pubDate>
-	  <guid>//Trien-khai-GCM-voi-Android-phan-2</guid>
-	  <description><![CDATA[
-	     <p>Ở phần một, mình đã giới thiệu GCM và hướng dẫn xây dựng được <code class="highlighter-rouge">server side</code>, phần tiếp theo sẽ là xây dựng <code class="highlighter-rouge">client side</code>. Let’s go!</p>
+    <!-- [[! Page Meta ]] -->
+    <title>Triển khai GCM với Android (Phần 2)</title>
+    <meta name="description" content="Huy Hùng - KMA - If you can't explain it simply, you don't understand it well enought" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css"
+          <!-- href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+      <!-- External libraries -->
+  <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
+  <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css"> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script> -->
+  <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/monokai_sublime.min.css"> -->
+  <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css"> -->
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="Huy Hùng - KMA" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Huy Hùng - KMA" />
+    <meta property="og:description" content="If you can't explain it simply, you don't understand it well enought" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover3.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Huy Hùng - KMA" />
+    <meta name="twitter:description" content="If you can't explain it simply, you don't understand it well enought" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover2.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "Huy Hùng - KMA",
+    "url": "/",
+    "image": "/assets/images/cover6.jpg",
+    "description": "If you can't explain it simply, you don't understand it well enought"
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Huy Hùng - KMA" href="/rss.xml" />
+
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <!-- <li class="nav-about " role="presentation"><a href="/about">About</a></li> -->
+        <li class="nav-android  nav-current" role="presentation"><a href="/tag/android">Android</a></li>
+        <li class="nav-life " role="presentation"><a href="/tag/life">Cuộc sống</a></li>
+        <!-- <li class="nav-fiction " role="presentation"><a href="/tag/fiction">Fiction</a></li> -->
+        <li class="nav-author " role="presentation"><a href="/author/casper">Author</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/rss.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/2016/01/gcm-banner-2.png) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-android tag-content">
+
+        <header class="post-header">
+            <h1 class="post-title">Triển khai GCM với Android (Phần 2)</h1>
+            <section class="post-meta">
+            <!-- <a href='/'>Đỗ Huy Hùng</a> -->
+            <time class="post-date" datetime="2016-01-14">14 Jan 2016</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/tag/Android'>Android</a>,
+                       
+                
+                    
+                       <a href='/tag/GCM'>Gcm</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+            
+            <p>Ở phần một, mình đã giới thiệu GCM và hướng dẫn xây dựng được <code class="highlighter-rouge">server side</code>, phần tiếp theo sẽ là xây dựng <code class="highlighter-rouge">client side</code>. Let’s go!</p>
 
 <p>Để tiếp tục phần hai, hãy chắc chắn bạn đã hoàn thành phần một (đã có file <code class="highlighter-rouge">google-service.json</code> trong thư mục <code class="highlighter-rouge">app</code> của project).</p>
 
@@ -223,102 +329,102 @@ dependencies {
 
 <p>Source code bạn có thể tham khảo <a href="https://github.com/hungdh0x5e/GoogleCloudMessaging">tại đây</a>.</p>
 
-	  ]]></description>
-	</item>
 
-	<item>
-	  <title>Triển khai GCM với Android</title>
-	  <link>//Trien-khai-GCM-voi-Android-phan-1</link>
-	  <author>Đỗ Huy Hùng</author>
-	  <pubDate>2016-01-14T17:18:00+07:00</pubDate>
-	  <guid>//Trien-khai-GCM-voi-Android-phan-1</guid>
-	  <description><![CDATA[
-	     <p>GCM cho phép bạn gửi các tin nhắn có dung lượng nhỏ từ server tới tất cả các thiết bị khi kết nối mạng. Điều này sẽ giúp thiết bị bảo vệ pin khi không phải request liên tục lên server cho dữ liệu mới. Với GCM, bạn có thể xây dựng ứng dụng multi-platform (Android, Ios, Web) như real-time chat, tin tức, lưu trữ dữ liệu …Hơn hết, GCM hoàn toàn miễn phí và không hạn chế về dữ liệu.
-GCM là dịch vụ giúp bạn tương tác giữa client - server thông qua máy chủ GCM.
-Trong bài viết này, mình sẽ giới thiệu, hướng dẫn các bạn các bước cơ bản để xây dựng ứng dụng Android sử dụng GCM (bao gồm cả client lẫn server).</p>
+        </section>
 
-<h2 id="m-hnh-cch-vn-hnh-ca-gcm">1. Mô hình, cách vận hành của GCM</h2>
-<p><img src="/assets/images/2016/01/gcm-diagram.png" alt="Sơ đồ vận hành của GCM" /></p>
+        <footer class="post-footer">
 
-<p>Quá trình hoạt động như sau:</p>
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
 
-<ol>
-  <li>Client gửi <code class="highlighter-rouge">senderID</code>, <code class="highlighter-rouge">application id</code> tới <code class="highlighter-rouge">GCM server</code> để đăng kí.</li>
-  <li>Nếu các thông số hợp lệ, <code class="highlighter-rouge">GCM server</code> sẽ trả về <code class="highlighter-rouge">registration id</code> cho client.</li>
-  <li>Sau khi nhận được <code class="highlighter-rouge">registration id</code> mà <code class="highlighter-rouge">GCM server</code> trả về, client sẽ  gửi <code class="highlighter-rouge">registration id</code> này lên server (do ta tự xây dựng).</li>
-  <li>Server nhận <code class="highlighter-rouge">registration id</code> và lưu nó vào CSDL (phục vụ cho việc quản lý, gửi thông báo sau này).</li>
-  <li>Mỗi khi muốn thông báo tới client, server sẽ gửi yêu cầu tới <code class="highlighter-rouge">GCM server</code> với danh sách các <code class="highlighter-rouge">registration id</code>.</li>
-  <li><code class="highlighter-rouge">GCM server</code> sẽ thông báo tin nhắn tới các client (dựa vào <code class="highlighter-rouge">registration id</code> mà server cung cấp).</li>
-</ol>
+            
+            <figure class="author-image">
+                <a class="img" href="/author/hungdh" style="background-image: url(/assets/images/anonymous.png)"><span class="hidden">'s Picture</span></a>
+            </figure>
+            
 
-<p><strong>Đăng kí với Google Cloud Messaging</strong></p>
+            <section class="author">
+                <h4><a href="/author/hungdh">Đỗ Huy Hùng</a></h4>
+                
+                
+                    <p> Fourth-year student at Academy of Cryptography Techniques. Android developer - Linux</p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> Ha Noi, VN</span> 
+                    <span class="author-link icon-link"><a href="https://hungdh.me/"> https://hungdh.me/</a></span> 
+                </div>
+            </section>
 
-<p>Để có được <code class="highlighter-rouge">senderID</code>, <code class="highlighter-rouge">application id</code> hãy làm như sau:</p>
+            <!-- /author  -->
 
-<ol>
-  <li>Truy cập tới: <a href="https://developers.google.com/mobile/add?platform=android&amp;cntapi=gcm">https://developers.google.com/mobile/</a> để tạo nhanh project.</li>
-  <li>
-    <p>Tại đây, bạn cần nhập <code class="highlighter-rouge">App name</code> và <code class="highlighter-rouge">package name</code> vào khung tương ứng. Sau đó chọn tiếp tục.
-<img src="/assets/images/2016/01/gcm-registration-api-1.png" alt="Đăng kí API cho ứng dụng" /></p>
-  </li>
-  <li>Ở bước này, bạn sẽ bật các API dùng cho ứng dụng của mình (ở đây chỉ demo GCM nên mình chỉ bật Cloud Messaging) bằng cách nhấn vào <code class="highlighter-rouge">Enable Cloud Messaging</code>.
-Kết quả thu được:
-<img src="/assets/images/2016/01/gcm-registration-api-2.png" alt="Đăng kí API cho ứng dụng" />
-Bạn có thể thấy 2 giá trị mà mình cần sử dụng: <strong>Server API Key</strong> (đươc sử dụng khi server gửi yêu cầu tới GCM server), <strong>Sender ID</strong> (dùng cho client).</li>
-  <li>Nhấn <code class="highlighter-rouge">Generate configuration files</code> để tạo file <code class="highlighter-rouge">google-service.json</code>, đây là file config được sử dụng tại client.
-Cuối cùng là tải file <code class="highlighter-rouge">google-service.json</code>, và di chuyển vào thư mục <code class="highlighter-rouge">/app/</code> trong project của bạn.</li>
-</ol>
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=Triển khai GCM với Android (Phần 2)&amp;url=https://hungdh.me/Trien-khai-GCM-voi-Android-phan-2"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://hungdh.me/Trien-khai-GCM-voi-Android-phan-2"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https://hungdh.me/Trien-khai-GCM-voi-Android-phan-2"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+            
+            <!-- Add Disqus Comments -->
+            
+            
+        </footer>
 
-<p>Bạn có thể tham khảo tài liệu hướng dẫn chính thức của Google <a href="https://developers.google.com/cloud-messaging/android/client?configured=true">tại đây</a></p>
+    </article>
 
-<h2 id="trin-khai-ng-dng">2. Triển khai ứng dụng.</h2>
+</main>
 
-<p>Trong bài viết này, mình sẽ hướng dẫn xây dựng server side trước, phía client sẽ có trong bài viết tiếp theo.</p>
+<aside class="read-next">
 
-<h3 id="xy-dng-server-side">2.1 Xây dựng Server side</h3>
+    <!-- [[! next_post ]] -->
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/2016/01/gcm-banner-2.png)" href="/Trien-khai-GCM-voi-Android-phan-1">
+            <section class="post">
+                <h2>Triển khai GCM với Android</h2>
+                <p>GCM cho phép bạn gửi các tin nhắn có dung lượng nhỏ từ server tới...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
 
-<p>Trong tutorial này, mình sẽ sử dụng <code class="highlighter-rouge">PHP</code> để xây dựng server cũng như <code class="highlighter-rouge">MySQL</code> làm cơ sở dữ liệu.</p>
-
-<p><strong>Xây dựng CSDL</strong></p>
-
-<ol>
-  <li>Mở phpmyadmin để tạo database với tên là <code class="highlighter-rouge">gcm</code>.</li>
-  <li>Vào database <code class="highlighter-rouge">gcm</code> và truy vấn câu query dưới để tạo bảng <code class="highlighter-rouge">gcm_users</code>
-<script src="https://gist.github.com/hungdh0x5e/9feae65b241f36fb248e.js"></script></li>
-</ol>
-
-<p><strong>Xây dựng server</strong></p>
-
-<ol>
-  <li>Tạo file <code class="highlighter-rouge">config.php</code> để lưu thông tin về database và google api key.
-<script src="https://gist.github.com/hungdh0x5e/d672489ff2c48cb70ea7.js"></script></li>
-  <li>Một file khác <code class="highlighter-rouge">[db_connect.php](https://gist.github.com/hungdh0x5e/3383e5f729c5053d72db)</code> để tiến hành kết nối với CSDL (bao gồm việc open và close).
-<script src="https://gist.github.com/hungdh0x5e/3383e5f729c5053d72db.js"></script></li>
-  <li>File <code class="highlighter-rouge">db_functions.php</code> chứa các phương thức thao tác với CSDL như thêm mới (storeUser), lấy toàn bộ danh sách user (getAllUsers). 
-Bạn có thể xem nội dung chi tiết <a href="https://gist.github.com/hungdh0x5e/6f04d2e4b205d440ac1d">tại đây</a>;</li>
-  <li>File <code class="highlighter-rouge">GCM.php</code> dùng để gửi yêu cầu thông báo tới GCM server.
-<script src="https://gist.github.com/hungdh0x5e/ff98e4007e4aec0b2aba.js"></script></li>
-  <li>Tạo file <code class="highlighter-rouge">register.php</code> để nhận truy vấn từ client, và lưu trữ thông tin vào trong CSDL. 
-Các tham số client cần phải gửi <code class="highlighter-rouge">name</code>, <code class="highlighter-rouge">email</code>, <code class="highlighter-rouge">registration id</code>.
-<script src="https://gist.github.com/hungdh0x5e/77c3836a45b76f9e58fa.js"></script></li>
-  <li>Tạo file <code class="highlighter-rouge">send_message.php</code> để gửi thông báo tới client thông qua GCM server.
-<script src="https://gist.github.com/hungdh0x5e/76ff3d300b1007d92de0.js"></script></li>
-  <li>Cuối cùng là tạo file <code class="highlighter-rouge">index.php</code> có nhiệ̣m vụ̣ hiể̉n thị̣ danh sách các client đã đăng kí , và cho phép gửi tin nhắn tới từng thiết bị̣. Do code khá dài nên mình sẽ dẫn link để các bạn tham khảo.
-<a href="https://gist.github.com/hungdh0x5e/a193f86ddbe2c234ba99">index.php</a></li>
-</ol>
-
-<p>Như vậy là đã xây dựng xong server side, giao diện quản lý sẽ tương tự như sau
-<img src="/assets/images/2016/01/gcm-admin.png" alt="Giao diện quản lý" /></p>
-
-<p><strong>Lưu ý:</strong> Chỉ xây dựng <code class="highlighter-rouge">client side</code> khi bạn đã xây dựng <code class="highlighter-rouge">server side</code> thành công.</p>
-
-<p>Trong bài viết tiếp theo, mình sẽ hướng dẫn cách xây dựng phía <code class="highlighter-rouge">client</code>.</p>
-
-<p>Toàn bộ code phần server bạn có thể tham khảo <a href="https://github.com/hungdh0x5e/GoogleCloudMessaging/tree/master/gcm">tại đây</a></p>
-
-	  ]]></description>
-	</item>
+<!-- /post -->
 
 
-</channel>
-</rss>
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">Huy Hùng - KMA</a> &copy; 2016</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/biomadeira/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+    <!-- // <script type="text/javascript" src="/assets/js/highlight.min.js"></script> -->
+
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>   
+</body>
+</html>
