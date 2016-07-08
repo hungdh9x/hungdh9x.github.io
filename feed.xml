@@ -10,7 +10,7 @@
       <item>
         <title>Tìm hiểu về nginx</title>
         
-          <description>&lt;h4 id=&quot;i-nginx-la-gi-&quot;&gt;I. Nginx là gì ?&lt;/h4&gt;
+          <description>&lt;p&gt;Nginx (engine x) là một web server (tương tự apache), vượt trội về khả năng xử lý các file tĩnh so với apache (mạnh về xử lý các file động). Nó có thể đóng vai trò là một reverse proxy cho các giao thức: HTTP, HTTPS, IMAP, POP3, SMTP cũng như hỗ trợ cân bằng tải (load balancer).&lt;/p&gt;
 
 </description>
         
