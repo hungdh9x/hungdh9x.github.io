@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Huy Hùng - KMA - Articles</title>
+    <description>If you can&#39;t explain it simply, you don&#39;t understand it well enought</description>
+    <link>
+    https://hungdh0x5e.github.io/</link>
+    
+      
+      <item>
+        <title>Tìm hiểu về nginx</title>
+        
+          <description>&lt;h4 id=&quot;i-nginx-la-gi-&quot;&gt;I. Nginx là gì ?&lt;/h4&gt;
+
+</description>
+        
+        <pubDate>Fri, 08 Jul 2016 18:18:00 +0700</pubDate>
+        <link>
+        https://hungdh0x5e.github.io//Tim-hieu-ve-nginx</link>
+        <guid isPermaLink="true">https://hungdh0x5e.github.io//Tim-hieu-ve-nginx</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Triển khai GCM với Android (Phần 2)</title>
+        
+          <description>&lt;p&gt;Ở phần một, mình đã giới thiệu GCM và hướng dẫn xây dựng được &lt;code class=&quot;highlighter-rouge&quot;&gt;server side&lt;/code&gt;, phần tiếp theo sẽ là xây dựng &lt;code class=&quot;highlighter-rouge&quot;&gt;client side&lt;/code&gt;. Let’s go!&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 14 Jan 2016 18:18:00 +0700</pubDate>
+        <link>
+        https://hungdh0x5e.github.io//Trien-khai-GCM-voi-Android-phan-2-Copy</link>
+        <guid isPermaLink="true">https://hungdh0x5e.github.io//Trien-khai-GCM-voi-Android-phan-2-Copy</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Triển khai GCM với Android</title>
+        
+          <description>&lt;p&gt;GCM cho phép bạn gửi các tin nhắn có dung lượng nhỏ từ server tới tất cả các thiết bị khi kết nối mạng. Điều này sẽ giúp thiết bị bảo vệ pin khi không phải request liên tục lên server cho dữ liệu mới. Với GCM, bạn có thể xây dựng ứng dụng multi-platform (Android, Ios, Web) như real-time chat, tin tức, lưu trữ dữ liệu …Hơn hết, GCM hoàn toàn miễn phí và không hạn chế về dữ liệu.
+GCM là dịch vụ giúp bạn tương tác giữa client - server thông qua máy chủ GCM.
+Trong bài viết này, mình sẽ giới thiệu, hướng dẫn các bạn các bước cơ bản để xây dựng ứng dụng Android sử dụng GCM (bao gồm cả client lẫn server).&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 14 Jan 2016 17:18:00 +0700</pubDate>
+        <link>
+        https://hungdh0x5e.github.io//Trien-khai-GCM-voi-Android-phan-1</link>
+        <guid isPermaLink="true">https://hungdh0x5e.github.io//Trien-khai-GCM-voi-Android-phan-1</guid>
+      </item>
+      
+    
+  </channel>
+</rss>

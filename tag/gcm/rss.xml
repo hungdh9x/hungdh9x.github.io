@@ -3,9 +3,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
    
-      <title>https://hungdh.me/</title>
+      <title>https://hungdh0x5e.github.io/</title>
    
-   <link>https://hungdh.me/</link>
+   <link>https://hungdh0x5e.github.io/</link>
    <description>If you can't explain it simply, you don't understand it well enought</description>
    <language>en-uk</language>
    <managingEditor> Đỗ Huy Hùng</managingEditor>
@@ -13,10 +13,10 @@
    
 	<item>
 	  <title>Triển khai GCM với Android (Phần 2)</title>
-	  <link>//Trien-khai-GCM-voi-Android-phan-2</link>
+	  <link>//Trien-khai-GCM-voi-Android-phan-2-Copy</link>
 	  <author>Đỗ Huy Hùng</author>
 	  <pubDate>2016-01-14T18:18:00+07:00</pubDate>
-	  <guid>//Trien-khai-GCM-voi-Android-phan-2</guid>
+	  <guid>//Trien-khai-GCM-voi-Android-phan-2-Copy</guid>
 	  <description><![CDATA[
 	     <p>Ở phần một, mình đã giới thiệu GCM và hướng dẫn xây dựng được <code class="highlighter-rouge">server side</code>, phần tiếp theo sẽ là xây dựng <code class="highlighter-rouge">client side</code>. Let’s go!</p>
 
@@ -28,21 +28,23 @@
   <li>Tiến hành mở file <strong>build.gradle</strong> của <code class="highlighter-rouge">app</code> và khai báo như sau:</li>
 </ul>
 
-<pre><code class="language-gradle">apply plugin: 'com.google.gms.google-services'
-dependencies {
-  compile "com.google.android.gms:play-services-gcm:8.4.0"
-}
+<div class="language-gradle highlighter-rouge"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.google.gms.google-services'</span>
+<span class="k">dependencies</span> <span class="o">{</span>
+  <span class="n">compile</span> <span class="s2">"com.google.android.gms:play-services-gcm:8.4.0"</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <ul>
   <li>Tiếp tục mở file <strong>build.gradle</strong> của <code class="highlighter-rouge">project</code></li>
 </ul>
 
-<pre><code class="language-gradle">dependencies {
-    classpath 'com.android.tools.build:gradle:1.5.0'
-    classpath 'com.google.gms:google-services:2.0.0-alpha3'
-}
+<div class="language-gradle highlighter-rouge"><pre class="highlight"><code><span class="k">dependencies</span> <span class="o">{</span>
+    <span class="n">classpath</span> <span class="s1">'com.android.tools.build:gradle:1.5.0'</span>
+    <span class="n">classpath</span> <span class="s1">'com.google.gms:google-services:2.0.0-alpha3'</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>Sau đó, tiến hành rebuild lại Project.</p>
 
@@ -50,7 +52,7 @@ dependencies {
 
 <p>Ứng dụng cần truy cập Internet và <code class="highlighter-rouge">wake lock</code> để gửi, nhận thông báo từ GCM server.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;manifest</span> <span class="na">package=</span><span class="s">"com.hungdh.gcmdemo"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;manifest</span> <span class="na">package=</span><span class="s">"com.hungdh.gcmdemo"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.INTERNET"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.WAKE_LOCK"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.permission.RECEIVE"</span> <span class="nt">/&gt;</span>
@@ -81,8 +83,8 @@ dependencies {
 
 <p>Như đã giới thiệu ở trên, class này sẽ tạo một <code class="highlighter-rouge">instance ID</code> từ Google và nó là duy nhất cho thiết bị và ứng dụng của bạn.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nd">@Override</span>
-<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onHandleIntent</span><span class="p">(</span><span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>        
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onHandleIntent</span><span class="o">(</span><span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>        
     <span class="o">...</span>
     <span class="c1">// [START get token]</span>
     <span class="n">InstanceID</span> <span class="n">instanceID</span> <span class="o">=</span> <span class="n">InstanceID</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
@@ -99,7 +101,7 @@ dependencies {
 
 <p>Hãy nhớ đăng kí service này trong <strong>AndroidManifest.xml</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
     ...
     <span class="nt">&lt;service</span>
         <span class="na">android:name=</span><span class="s">".RegistrationIntentService"</span>
@@ -114,9 +116,9 @@ dependencies {
 
 <p>Theo <a href="https://developers.google.com/instance-id/guides/android-implementation">tài liệu</a> chính thức của Google, <code class="highlighter-rouge">InstanceID</code> sẽ có hạn sử dụng tối đa là 6 tháng. Để khắc phục điều này, ta cần extend từ <code class="highlighter-rouge">InstanceIDListenerService</code> để xử lý những thay đổi khi refresh token. Vì vậy, ta nên tạo  <code class="highlighter-rouge">MyInstanceIDListenerService.java</code> để chạy <code class="highlighter-rouge">RegistrationIntentService</code> - giúp chúng ta lấy được token mới.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyInstanceIDListenerService</span> <span class="kd">extends</span> <span class="n">InstanceIDListenerService</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyInstanceIDListenerService</span> <span class="kd">extends</span> <span class="n">InstanceIDListenerService</span> <span class="o">{</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="n">onTokenRefresh</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onTokenRefresh</span><span class="o">()</span> <span class="o">{</span>
         <span class="c1">// Fetch updated Instance ID token and notify of changes</span>
         <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">RegistrationIntentService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
         <span class="n">startService</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
@@ -125,7 +127,7 @@ dependencies {
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
     <span class="c">&lt;!-- [START instanceId_listener] --&gt;</span>
     <span class="nt">&lt;service</span>
         <span class="na">android:name=</span><span class="s">".MyInstanceIDListenerService"</span>
@@ -143,7 +145,7 @@ dependencies {
 
 <p>Khai báo trong <code class="highlighter-rouge">AndroidManifest.xml</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;receiver</span>
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;receiver</span>
   <span class="na">android:name=</span><span class="s">"com.google.android.gms.gcm.GcmReceiver"</span>
   <span class="na">android:exported=</span><span class="s">"true"</span>
   <span class="na">android:permission=</span><span class="s">"com.google.android.c2dm.permission.SEND"</span> <span class="nt">&gt;</span>
@@ -159,13 +161,13 @@ dependencies {
 
 <p>Tạo file <code class="highlighter-rouge">MyGcmListenerService.java</code> được extends từ <code class="highlighter-rouge">GcmListenerService</code> - sẽ xử lý việc nhận các thông báo từ phía GCM server:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyGcmListenerService</span> <span class="kd">extends</span> <span class="n">GcmListenerService</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyGcmListenerService</span> <span class="kd">extends</span> <span class="n">GcmListenerService</span> <span class="o">{</span>
 
     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">"MyGcmListenerService"</span><span class="o">;</span>
 
     <span class="c1">// [START receive_message]</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="n">onMessageReceived</span><span class="o">(</span><span class="n">String</span> <span class="n">from</span><span class="o">,</span> <span class="n">Bundle</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onMessageReceived</span><span class="o">(</span><span class="n">String</span> <span class="n">from</span><span class="o">,</span> <span class="n">Bundle</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"message"</span><span class="o">);</span>
         <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"From: "</span> <span class="o">+</span> <span class="n">from</span><span class="o">);</span>
         <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Message: "</span> <span class="o">+</span> <span class="n">message</span><span class="o">);</span>
@@ -175,7 +177,7 @@ dependencies {
     <span class="o">}</span>
     <span class="c1">// [END receive_message]</span>
 
-    <span class="kd">private</span> <span class="kt">void</span> <span class="n">sendNotification</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">sendNotification</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">MainActivity</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
         <span class="n">intent</span><span class="o">.</span><span class="na">addFlags</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_ACTIVITY_CLEAR_TOP</span><span class="o">);</span>
         <span class="n">PendingIntent</span> <span class="n">pendingIntent</span> <span class="o">=</span> <span class="n">PendingIntent</span><span class="o">.</span><span class="na">getActivity</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">intent</span><span class="o">,</span>
@@ -201,7 +203,7 @@ dependencies {
 
 <p>Và không thể thiếu phần đăng kí service cho class</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;service</span>
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;service</span>
 <span class="na">android:name=</span><span class="s">".MyGcmListenerService"</span>
 <span class="na">android:exported=</span><span class="s">"false"</span> <span class="nt">&gt;</span>
     <span class="nt">&lt;intent-filter&gt;</span>

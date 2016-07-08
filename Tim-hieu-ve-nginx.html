@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>Tìm hiểu về nginx</title>
+    <meta name="description" content="Huy Hùng - KMA - If you can't explain it simply, you don't understand it well enought" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- [[! highlight.js ]] -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="Huy Hùng - KMA" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Huy Hùng - KMA" />
+    <meta property="og:description" content="If you can't explain it simply, you don't understand it well enought" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Huy Hùng - KMA" />
+    <meta name="twitter:description" content="If you can't explain it simply, you don't understand it well enought" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "Finding The Way Home",
+    "url": "/",
+    "image": "/assets/images/cover1.jpg",
+    "description": "If you can't explain it simply, you don't understand it well enought"
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Huy Hùng - KMA" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-android " role="presentation"><a href="/tag/android">Android</a></li>
+        <!-- <li class="nav-fables " role="presentation"><a href="/tag/fables">Fables</a></li> -->
+        <!-- <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li> -->
+        <!-- <li class="nav-fiction " role="presentation"><a href="/tag/fiction">Fiction</a></li> -->
+        <li class="nav-author " role="presentation"><a href="/author/hungdh">Author</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/2016/01/gcm-banner-2.png) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-android tag-content">
+
+        <header class="post-header">
+            <h1 class="post-title">Tìm hiểu về nginx</h1>
+            <section class="post-meta">
+            <!-- <a href='/'>Đỗ Huy Hùng</a> -->
+            <time class="post-date" datetime="2016-07-08">08 Jul 2016</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/tag/nginx'>Nginx</a>,
+                       
+                
+                    
+                       <a href='/tag/webserver'>Webserver</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+            
+            <h4 id="i-nginx-la-gi-">I. Nginx là gì ?</h4>
+
+<ol>
+  <li>Khái niệm</li>
+</ol>
+
+<ul>
+  <li>Nginx (engine x) là một web server (tương tự apache), vượt trội về khả năng xử lý các file tĩnh so với apache (mạnh về xử lý các file động). Nó có thể đóng vai trò là một reverse proxy cho các giao thức: HTTP, HTTPS, IMAP, POP3, SMTP cũng như hỗ trợ cân bằng tải (load balancer).</li>
+  <li>Nginx được viết bởi <a href="http://sysoev.ru/en/">Igor Sysoev</a>, được công bố năm 2002. Nginx chạy trên Unix, Linux, các biến thể BSD, Mac OS X, Solaris, AIX, HP-UX và Microsoft Windows.</li>
+</ul>
+
+<ol>
+  <li>Tính năng</li>
+</ol>
+
+<p>a. Basic HTTP server features</p>
+
+<ul>
+  <li>Xử lý các file tĩnh và file index, tự động đánh index</li>
+  <li>Tăng tốc reverse proxy với việc caching, cân bằng tải (load banlancing), khả năng chịu lỗi (fault tolerance)</li>
+  <li>Hỗ trợ tăng tốc caching với FastCGI, SCGI, uwsgi</li>
+  <li>Hỗ trợ giao thức SSL, TLS SNI, HTTP/2</li>
+  <li>Tạo virtual host</li>
+  <li>Giới hạn số kết nối, yêu cầu từ một địa chỉ IP</li>
+  <li>Kiểm soát truy cập bởi: địa chỉ IP, mật khẩu (HTTP basic authentication) và từ các yêu cầu con (subrequest)</li>
+</ul>
+
+<p>b. TCP/UDP proxy server features</p>
+
+<ul>
+  <li>Load balancing and fault tolerance</li>
+  <li>Access control based on client address</li>
+</ul>
+
+<p>c. Mail proxy server features</p>
+
+<ul>
+  <li>Chứng thực người dùng sử dụng HTTP authentication và chuyển hướng kết nối tới SMTP server bên trong.</li>
+  <li>Hỗ trợ: POP3, IMAP, SMTP, SSL, STARTTLS and STLS</li>
+</ul>
+
+<h4 id="ii-ci-t-cu-hnh-virtual-host">II. Cài đặt, cấu hình virtual host</h4>
+
+<p>Cài đặt nginx:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>apt-get install nginx
+</code></pre>
+</div>
+
+<p><em>Core Context</em></p>
+
+<h5 id="the-main-context">The main context</h5>
+
+<p>Tên gọi phổ biến là <code class="highlighter-rouge">main</code> hay <code class="highlighter-rouge">global</code> context. Đây là context duy nhất mà không chứa trong bất kì context (context block) nào khác.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># The main context is here, outside any other contexts
+. . .
+context {
+    . . .
+}```
+
+Các thông số phổ biến trong main context: the number of workers, the file to save the main process's ID
+
+##### The event context
+
+Chứa trong `main context`, được sử dụng để thiết lập các global option ảnh hưởng đến cách nginx xử lý các kết nối chung. Và context này là duy nhất trong nginx configure
+
+```events {                     
+    worker_connections 768;                        
+    # multi_accept on;
+}```
+
+##### The HTTP context
+
+Trong khi cấu hình nginx như một web server hay reverse proxy, `http` context sẽ giữ đa số các cấu hình. Context này sẽ chứa tất cả các tiêu chí, các context cần thiết khác để định nghĩa cách chương trình sẽ handle các kết nối HTTP, HTTPS. Và nó ngang hàng với `event context`
+
+```http {                     
+    ....
+}```
+
+Một vài tiêu chí:
+- Đường dẫn cho log (`access_log`, `error_log`)
+- Cấu hình hiển thị khi server lỗi (`error_page`)
+- Tiêu chí nén (`gzip`, `gzip_disable`)
+- TCP keep alive (`keepalive_disable`, `keepalive_requests`, `keepalive_timeout`)
+- Các luật (rule) mà Nginx sẽ làm theo để cố gắng tối ưu hóa gói tin và system call (`sendfile`, `tcp_nodelay`, `tcp_nopush`)
+- Thư mục chứa website (`root`), index file (`index`)
+
+##### The Server context
+
+Được định nghĩa bên trong `http context`. Đây là phần giúp ta cấu hình virtual host.
+
+- `listen`: Địa chỉ IP, port được thiết kế để nhận response. Nếu yêu cầu từ client có giá trị trùng với trường này, block này sẽ được lựa chọn để xử lý kết nối.
+- `server_name`: để kiểm tra map với domain từ request, nếu trùng sẽ đẩy request đến host này.
+- Ngoài ra còn có một số tiêu chí (có thể định nghĩa trong `http context`) như logging, document root, compression, ...
+
+##### The Location context
+
+`Location context` chứa các config ứng với mỗi khu vực trong `server context`
+
+</code></pre>
+</div>
+<p>server {
+    …
+    server_name example.com;</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>location /upload {
+    ...
+}
+
+location /admin {
+    ...
+} } ```
+</code></pre>
+</div>
+
+<p>Như example trên, khi người dùng truy cập vào url <code class="highlighter-rouge">http://example.com/upload</code> sẽ map với các rule trong location <code class="highlighter-rouge">upload</code>. Tương tự với location <code class="highlighter-rouge">admin</code>. Điều này giúp ta có thể thiết lập các chính sách truy cập phù hợp với từng khu vực.</p>
+
+<p>VD: 
+- Cấm mọi truy cập tới khu vực <code class="highlighter-rouge">admin</code> trừ các IP trong dải mạng <code class="highlighter-rouge">192.168.1.0/24</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>location /admin {
+    allow 192.168.1.0/24;
+    deny all;
+}
+</code></pre>
+</div>
+<p>Các tiêu chí xuất hiện trong <code class="highlighter-rouge">location context</code>:
+-  <code class="highlighter-rouge">root /data;</code>: thêm đường dẫn.
+-  <code class="highlighter-rouge">proxy_pass $IP_proxy</code>: chuyển request tới $IP_proxy - sử dụng để thiết lập nginx như reverse proxy
+-  <code class="highlighter-rouge">return 404;</code>: return status code, or redirect <code class="highlighter-rouge">return 301 http://www.example.com/moved/here;</code>
+-  <code class="highlighter-rouge">rewrite</code>: rewrite url
+-  <code class="highlighter-rouge">sub_filter</code> : rewrite HTTP response</p>
+
+<p>Reference: https://www.nginx.com/resources/admin-guide/nginx-web-server/
+http://nginx.org/en/docs/http/ngx_http_core_module.html#variables</p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/author/hungdh" style="background-image: url(/assets/images/anonymous.png)"><span class="hidden">'s Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/author/hungdh">Đỗ Huy Hùng</a></h4>
+                
+                
+                    <p> Fourth-year student at Academy of Cryptography Techniques. Android developer - Linux</p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> Ha Noi, VN</span> 
+                    <span class="author-link icon-link"><a href="https://hungdh0x5e.github.io/"> https://hungdh0x5e.github.io/</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=Tìm hiểu về nginx&amp;url=https://hungdh0x5e.github.io/Tim-hieu-ve-nginx"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://hungdh0x5e.github.io/Tim-hieu-ve-nginx"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https://hungdh0x5e.github.io/Tim-hieu-ve-nginx"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+            
+            <!-- Add Disqus Comments -->
+            
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/2016/01/gcm-banner-2.png)" href="/Trien-khai-GCM-voi-Android-phan-2-Copy">
+            <section class="post">
+                <h2>Triển khai GCM với Android (Phần 2)</h2>
+                <p>Ở phần một, mình đã giới thiệu GCM và hướng dẫn xây dựng được server...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">Huy Hùng - KMA</a> &copy; 2016</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/biomadeira/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>   
+</body>
+</html>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>https://hungdh0x5e.github.io/</title>
+   
+   <link>https://hungdh0x5e.github.io/</link>
+   <description>If you can't explain it simply, you don't understand it well enought</description>
+   <language>en-uk</language>
+   <managingEditor> Đỗ Huy Hùng</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Tìm hiểu về nginx</title>
+	  <link>//Tim-hieu-ve-nginx</link>
+	  <author>Đỗ Huy Hùng</author>
+	  <pubDate>2016-07-08T18:18:00+07:00</pubDate>
+	  <guid>//Tim-hieu-ve-nginx</guid>
+	  <description><![CDATA[
+	     <h4 id="i-nginx-la-gi-">I. Nginx là gì ?</h4>
+
+<ol>
+  <li>Khái niệm</li>
+</ol>
+
+<ul>
+  <li>Nginx (engine x) là một web server (tương tự apache), vượt trội về khả năng xử lý các file tĩnh so với apache (mạnh về xử lý các file động). Nó có thể đóng vai trò là một reverse proxy cho các giao thức: HTTP, HTTPS, IMAP, POP3, SMTP cũng như hỗ trợ cân bằng tải (load balancer).</li>
+  <li>Nginx được viết bởi <a href="http://sysoev.ru/en/">Igor Sysoev</a>, được công bố năm 2002. Nginx chạy trên Unix, Linux, các biến thể BSD, Mac OS X, Solaris, AIX, HP-UX và Microsoft Windows.</li>
+</ul>
+
+<ol>
+  <li>Tính năng</li>
+</ol>
+
+<p>a. Basic HTTP server features</p>
+
+<ul>
+  <li>Xử lý các file tĩnh và file index, tự động đánh index</li>
+  <li>Tăng tốc reverse proxy với việc caching, cân bằng tải (load banlancing), khả năng chịu lỗi (fault tolerance)</li>
+  <li>Hỗ trợ tăng tốc caching với FastCGI, SCGI, uwsgi</li>
+  <li>Hỗ trợ giao thức SSL, TLS SNI, HTTP/2</li>
+  <li>Tạo virtual host</li>
+  <li>Giới hạn số kết nối, yêu cầu từ một địa chỉ IP</li>
+  <li>Kiểm soát truy cập bởi: địa chỉ IP, mật khẩu (HTTP basic authentication) và từ các yêu cầu con (subrequest)</li>
+</ul>
+
+<p>b. TCP/UDP proxy server features</p>
+
+<ul>
+  <li>Load balancing and fault tolerance</li>
+  <li>Access control based on client address</li>
+</ul>
+
+<p>c. Mail proxy server features</p>
+
+<ul>
+  <li>Chứng thực người dùng sử dụng HTTP authentication và chuyển hướng kết nối tới SMTP server bên trong.</li>
+  <li>Hỗ trợ: POP3, IMAP, SMTP, SSL, STARTTLS and STLS</li>
+</ul>
+
+<h4 id="ii-ci-t-cu-hnh-virtual-host">II. Cài đặt, cấu hình virtual host</h4>
+
+<p>Cài đặt nginx:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>apt-get install nginx
+</code></pre>
+</div>
+
+<p><em>Core Context</em></p>
+
+<h5 id="the-main-context">The main context</h5>
+
+<p>Tên gọi phổ biến là <code class="highlighter-rouge">main</code> hay <code class="highlighter-rouge">global</code> context. Đây là context duy nhất mà không chứa trong bất kì context (context block) nào khác.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># The main context is here, outside any other contexts
+. . .
+context {
+    . . .
+}```
+
+Các thông số phổ biến trong main context: the number of workers, the file to save the main process's ID
+
+##### The event context
+
+Chứa trong `main context`, được sử dụng để thiết lập các global option ảnh hưởng đến cách nginx xử lý các kết nối chung. Và context này là duy nhất trong nginx configure
+
+```events {                     
+    worker_connections 768;                        
+    # multi_accept on;
+}```
+
+##### The HTTP context
+
+Trong khi cấu hình nginx như một web server hay reverse proxy, `http` context sẽ giữ đa số các cấu hình. Context này sẽ chứa tất cả các tiêu chí, các context cần thiết khác để định nghĩa cách chương trình sẽ handle các kết nối HTTP, HTTPS. Và nó ngang hàng với `event context`
+
+```http {                     
+    ....
+}```
+
+Một vài tiêu chí:
+- Đường dẫn cho log (`access_log`, `error_log`)
+- Cấu hình hiển thị khi server lỗi (`error_page`)
+- Tiêu chí nén (`gzip`, `gzip_disable`)
+- TCP keep alive (`keepalive_disable`, `keepalive_requests`, `keepalive_timeout`)
+- Các luật (rule) mà Nginx sẽ làm theo để cố gắng tối ưu hóa gói tin và system call (`sendfile`, `tcp_nodelay`, `tcp_nopush`)
+- Thư mục chứa website (`root`), index file (`index`)
+
+##### The Server context
+
+Được định nghĩa bên trong `http context`. Đây là phần giúp ta cấu hình virtual host.
+
+- `listen`: Địa chỉ IP, port được thiết kế để nhận response. Nếu yêu cầu từ client có giá trị trùng với trường này, block này sẽ được lựa chọn để xử lý kết nối.
+- `server_name`: để kiểm tra map với domain từ request, nếu trùng sẽ đẩy request đến host này.
+- Ngoài ra còn có một số tiêu chí (có thể định nghĩa trong `http context`) như logging, document root, compression, ...
+
+##### The Location context
+
+`Location context` chứa các config ứng với mỗi khu vực trong `server context`
+
+</code></pre>
+</div>
+<p>server {
+    …
+    server_name example.com;</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>location /upload {
+    ...
+}
+
+location /admin {
+    ...
+} } ```
+</code></pre>
+</div>
+
+<p>Như example trên, khi người dùng truy cập vào url <code class="highlighter-rouge">http://example.com/upload</code> sẽ map với các rule trong location <code class="highlighter-rouge">upload</code>. Tương tự với location <code class="highlighter-rouge">admin</code>. Điều này giúp ta có thể thiết lập các chính sách truy cập phù hợp với từng khu vực.</p>
+
+<p>VD: 
+- Cấm mọi truy cập tới khu vực <code class="highlighter-rouge">admin</code> trừ các IP trong dải mạng <code class="highlighter-rouge">192.168.1.0/24</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>location /admin {
+    allow 192.168.1.0/24;
+    deny all;
+}
+</code></pre>
+</div>
+<p>Các tiêu chí xuất hiện trong <code class="highlighter-rouge">location context</code>:
+-  <code class="highlighter-rouge">root /data;</code>: thêm đường dẫn.
+-  <code class="highlighter-rouge">proxy_pass $IP_proxy</code>: chuyển request tới $IP_proxy - sử dụng để thiết lập nginx như reverse proxy
+-  <code class="highlighter-rouge">return 404;</code>: return status code, or redirect <code class="highlighter-rouge">return 301 http://www.example.com/moved/here;</code>
+-  <code class="highlighter-rouge">rewrite</code>: rewrite url
+-  <code class="highlighter-rouge">sub_filter</code> : rewrite HTTP response</p>
+
+<p>Reference: https://www.nginx.com/resources/admin-guide/nginx-web-server/
+http://nginx.org/en/docs/http/ngx_http_core_module.html#variables</p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>
