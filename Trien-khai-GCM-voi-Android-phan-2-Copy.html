@@ -17,15 +17,14 @@
     <!-- [[! Styles'n'Scripts ]] -->
     <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
     <link rel="stylesheet" type="text/css"
-          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+          <!-- href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
     <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
-
-    <!-- [[! highlight.js ]] -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
-    <style>.hljs { background: none; }</style>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-
+      <!-- External libraries -->
+  <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/monokai.min.css">
+ <!--<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script> -->
+  <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/monokai_sublime.min.css"> -->
+  <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css"> -->
     <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
         <link rel="canonical" href="/" />
     <meta name="referrer" content="origin" />
@@ -36,28 +35,27 @@
     <meta property="og:title" content="Huy Hùng - KMA" />
     <meta property="og:description" content="If you can't explain it simply, you don't understand it well enought" />
     <meta property="og:url" content="/" />
-    <meta property="og:image" content="/assets/images/cover1.jpg" />
+    <meta property="og:image" content="/assets/images/cover3.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Huy Hùng - KMA" />
     <meta name="twitter:description" content="If you can't explain it simply, you don't understand it well enought" />
     <meta name="twitter:url" content="/" />
-    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+    <meta name="twitter:image:src" content="/assets/images/cover2.jpg" />
 
     <script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "Website",
-    "publisher": "Finding The Way Home",
+    "publisher": "Huy Hùng - KMA",
     "url": "/",
-    "image": "/assets/images/cover1.jpg",
+    "image": "/assets/images/cover6.jpg",
     "description": "If you can't explain it simply, you don't understand it well enought"
 }
     </script>
 
     <meta name="generator" content="Jekyll 3.0.0" />
-    <link rel="alternate" type="application/rss+xml" title="Huy Hùng - KMA" href="/feed.xml" />
-
+    <link rel="alternate" type="application/rss+xml" title="Huy Hùng - KMA" href="/rss.xml" />
 
 </head>
 <body class="home-template nav-closed">
@@ -69,17 +67,15 @@
     </a>
     <ul>
         <li class="nav-home " role="presentation"><a href="/">Home</a></li>
-        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <!-- <li class="nav-about " role="presentation"><a href="/about">About</a></li> -->
         <li class="nav-android  nav-current" role="presentation"><a href="/tag/android">Android</a></li>
-        <!-- <li class="nav-fables " role="presentation"><a href="/tag/fables">Fables</a></li> -->
-        <!-- <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li> -->
+        <li class="nav-life " role="presentation"><a href="/tag/life">Cuộc sống</a></li>
         <!-- <li class="nav-fiction " role="presentation"><a href="/tag/fiction">Fiction</a></li> -->
         <li class="nav-author " role="presentation"><a href="/author/hungdh">Author</a></li>
     </ul>
-    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+    <a class="subscribe-button icon-feed" href="/rss.xml">Subscribe</a>
 </div>
 <span class="nav-cover"></span>
-
 
     <div class="site-wrapper">
 
@@ -132,37 +128,35 @@
 
 <p>Để tiếp tục phần hai, hãy chắc chắn bạn đã hoàn thành phần một (đã có file <code class="highlighter-rouge">google-service.json</code> trong thư mục <code class="highlighter-rouge">app</code> của project).</p>
 
-<h4 id="khai-bo-th-vin">1. Khai báo thư viện</h4>
+<h4 id="1-khai-báo-thư-viện">1. Khai báo thư viện</h4>
 
 <ul>
   <li>Tiến hành mở file <strong>build.gradle</strong> của <code class="highlighter-rouge">app</code> và khai báo như sau:</li>
 </ul>
 
-<div class="language-gradle highlighter-rouge"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.google.gms.google-services'</span>
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.google.gms.google-services'</span>
 <span class="k">dependencies</span> <span class="o">{</span>
   <span class="n">compile</span> <span class="s2">"com.google.android.gms:play-services-gcm:8.4.0"</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>Tiếp tục mở file <strong>build.gradle</strong> của <code class="highlighter-rouge">project</code></li>
 </ul>
 
-<div class="language-gradle highlighter-rouge"><pre class="highlight"><code><span class="k">dependencies</span> <span class="o">{</span>
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">dependencies</span> <span class="o">{</span>
     <span class="n">classpath</span> <span class="s1">'com.android.tools.build:gradle:1.5.0'</span>
     <span class="n">classpath</span> <span class="s1">'com.google.gms:google-services:2.0.0-alpha3'</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Sau đó, tiến hành rebuild lại Project.</p>
 
-<h4 id="khai-bo-gcm-permission">2. Khai báo GCM permission</h4>
+<h4 id="2-khai-báo-gcm-permission">2. Khai báo GCM permission</h4>
 
 <p>Ứng dụng cần truy cập Internet và <code class="highlighter-rouge">wake lock</code> để gửi, nhận thông báo từ GCM server.</p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;manifest</span> <span class="na">package=</span><span class="s">"com.hungdh.gcmdemo"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;manifest</span> <span class="na">package=</span><span class="s">"com.hungdh.gcmdemo"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.INTERNET"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.WAKE_LOCK"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.permission.RECEIVE"</span> <span class="nt">/&gt;</span>
@@ -170,10 +164,9 @@
       <span class="na">android:protectionLevel=</span><span class="s">"signature"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"com.hungdh.gcmdemo.permission.C2D_MESSAGE"</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/manifest&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<h4 id="code-code-v-code">3. Code, code, và code</h4>
+<h4 id="3-code-code-và-code">3. Code, code, và code</h4>
 
 <p>Cấu trúc chương trình: ngoài class Main ra thì ta cần 3 class với chức năng như sau:</p>
 
@@ -193,7 +186,7 @@
 
 <p>Như đã giới thiệu ở trên, class này sẽ tạo một <code class="highlighter-rouge">instance ID</code> từ Google và nó là duy nhất cho thiết bị và ứng dụng của bạn.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Override</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
 <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onHandleIntent</span><span class="o">(</span><span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>        
     <span class="o">...</span>
     <span class="c1">// [START get token]</span>
@@ -204,14 +197,13 @@
     <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"GCM Registration Token: "</span> <span class="o">+</span> <span class="n">token</span><span class="o">);</span>
     <span class="o">...</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Giả sử yêu cầu này là thành công, bạn sẽ có một token. Và khi đó, ta sẽ tiến hành đăng kí token này lên server do chúng ta xây dựng với các tham số như đã xây dựng trong bảng <code class="highlighter-rouge">gcm_users</code> bằng phương thức <code class="highlighter-rouge">sendRegistrationToServer</code>.</p>
 
 <p>Hãy nhớ đăng kí service này trong <strong>AndroidManifest.xml</strong></p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
     ...
     <span class="nt">&lt;service</span>
         <span class="na">android:name=</span><span class="s">".RegistrationIntentService"</span>
@@ -219,14 +211,13 @@
     <span class="nt">&lt;/service&gt;</span>
 	...
 <span class="nt">&lt;/application&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="myinstanceidlistenerservicejava">MyInstanceIDListenerService.java</h5>
 
 <p>Theo <a href="https://developers.google.com/instance-id/guides/android-implementation">tài liệu</a> chính thức của Google, <code class="highlighter-rouge">InstanceID</code> sẽ có hạn sử dụng tối đa là 6 tháng. Để khắc phục điều này, ta cần extend từ <code class="highlighter-rouge">InstanceIDListenerService</code> để xử lý những thay đổi khi refresh token. Vì vậy, ta nên tạo  <code class="highlighter-rouge">MyInstanceIDListenerService.java</code> để chạy <code class="highlighter-rouge">RegistrationIntentService</code> - giúp chúng ta lấy được token mới.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyInstanceIDListenerService</span> <span class="kd">extends</span> <span class="n">InstanceIDListenerService</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyInstanceIDListenerService</span> <span class="kd">extends</span> <span class="n">InstanceIDListenerService</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onTokenRefresh</span><span class="o">()</span> <span class="o">{</span>
         <span class="c1">// Fetch updated Instance ID token and notify of changes</span>
@@ -234,10 +225,9 @@
         <span class="n">startService</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
     <span class="c">&lt;!-- [START instanceId_listener] --&gt;</span>
     <span class="nt">&lt;service</span>
         <span class="na">android:name=</span><span class="s">".MyInstanceIDListenerService"</span>
@@ -248,14 +238,13 @@
     <span class="nt">&lt;/service&gt;</span>
     <span class="c">&lt;!-- [END instanceId_listener] --&gt;</span>
 <span class="nt">&lt;/application&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<h5 id="to-broadcast-receiver-v-message-handler">Tạo Broadcast Receiver và Message Handler</h5>
+<h5 id="tạo-broadcast-receiver-và-message-handler">Tạo Broadcast Receiver và Message Handler</h5>
 
 <p>Khai báo trong <code class="highlighter-rouge">AndroidManifest.xml</code>:</p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;receiver</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;receiver</span>
   <span class="na">android:name=</span><span class="s">"com.google.android.gms.gcm.GcmReceiver"</span>
   <span class="na">android:exported=</span><span class="s">"true"</span>
   <span class="na">android:permission=</span><span class="s">"com.google.android.c2dm.permission.SEND"</span> <span class="nt">&gt;</span>
@@ -264,14 +253,13 @@
      <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"com.codepath.gcmquickstart"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;/intent-filter&gt;</span>
 <span class="nt">&lt;/receiver&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="mygcmlistenerservicejava">MyGcmListenerService.java</h5>
 
 <p>Tạo file <code class="highlighter-rouge">MyGcmListenerService.java</code> được extends từ <code class="highlighter-rouge">GcmListenerService</code> - sẽ xử lý việc nhận các thông báo từ phía GCM server:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyGcmListenerService</span> <span class="kd">extends</span> <span class="n">GcmListenerService</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyGcmListenerService</span> <span class="kd">extends</span> <span class="n">GcmListenerService</span> <span class="o">{</span>
 
     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">"MyGcmListenerService"</span><span class="o">;</span>
 
@@ -308,26 +296,24 @@
         <span class="n">notificationManager</span><span class="o">.</span><span class="na">notify</span><span class="o">(</span><span class="mi">0</span> <span class="cm">/* ID of notification */</span><span class="o">,</span> <span class="n">notificationBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Và không thể thiếu phần đăng kí service cho class</p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;service</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;service</span>
 <span class="na">android:name=</span><span class="s">".MyGcmListenerService"</span>
 <span class="na">android:exported=</span><span class="s">"false"</span> <span class="nt">&gt;</span>
     <span class="nt">&lt;intent-filter&gt;</span>
         <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span> <span class="nt">/&gt;</span>
     <span class="nt">&lt;/intent-filter&gt;</span>
 <span class="nt">&lt;/service&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="mainactivityjava">MainActivity.java</h5>
 
 <script src="https://gist.github.com/hungdh0x5e/fe285dbcdf6bc9bd8335.js"></script>
 
-<h4 id="demo">4. Demo</h4>
+<h4 id="4-demo">4. Demo</h4>
 
 <p>Truy cập vào giao diện quản lý của server. Viết nội dung và gửi thông báo cho client.</p>
 
@@ -392,10 +378,10 @@
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/2016/07/nginx_banner.jpg)" href="/Tim-hieu-ve-nginx">
+        <a class="read-next-story " style="background-image: url(/assets/images/2016/01/gcm-banner-2.png)" href="/Tim-hieu-ve-nginx">
             <section class="post">
                 <h2>Tìm hiểu về nginx</h2>
-                <p>Nginx (engine x) là một web server (tương tự apache), vượt trội về khả năng...</p>
+                <p>#### I. Nginx là gì ? 1. Khái niệm - Nginx (engine x) là một...</p>
             </section>
         </a>
     
@@ -416,7 +402,7 @@
 
 
         <footer class="site-footer clearfix">
-          <section class="copyright"><a href="/">Huy Hùng - KMA</a> &copy; 2016</section>
+          <section class="copyright"><a href="/">Huy Hùng - KMA</a> &copy; 2018</section>
           <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/biomadeira/jasper">Jasper</a></section>
         </footer>
     </div>
@@ -425,6 +411,7 @@
     <!-- [[! The main JavaScript file for Casper ]] -->
     <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
     <script type="text/javascript" src="/assets/js/index.js"></script>
+    <!-- // <script type="text/javascript" src="/assets/js/highlight.min.js"></script> -->
 
     <!-- Add Google Analytics  -->
         <!-- Google Analytics Tracking code -->

@@ -22,37 +22,35 @@
 
 <p>Để tiếp tục phần hai, hãy chắc chắn bạn đã hoàn thành phần một (đã có file <code class="highlighter-rouge">google-service.json</code> trong thư mục <code class="highlighter-rouge">app</code> của project).</p>
 
-<h4 id="khai-bo-th-vin">1. Khai báo thư viện</h4>
+<h4 id="1-khai-báo-thư-viện">1. Khai báo thư viện</h4>
 
 <ul>
   <li>Tiến hành mở file <strong>build.gradle</strong> của <code class="highlighter-rouge">app</code> và khai báo như sau:</li>
 </ul>
 
-<div class="language-gradle highlighter-rouge"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.google.gms.google-services'</span>
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.google.gms.google-services'</span>
 <span class="k">dependencies</span> <span class="o">{</span>
   <span class="n">compile</span> <span class="s2">"com.google.android.gms:play-services-gcm:8.4.0"</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>Tiếp tục mở file <strong>build.gradle</strong> của <code class="highlighter-rouge">project</code></li>
 </ul>
 
-<div class="language-gradle highlighter-rouge"><pre class="highlight"><code><span class="k">dependencies</span> <span class="o">{</span>
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">dependencies</span> <span class="o">{</span>
     <span class="n">classpath</span> <span class="s1">'com.android.tools.build:gradle:1.5.0'</span>
     <span class="n">classpath</span> <span class="s1">'com.google.gms:google-services:2.0.0-alpha3'</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Sau đó, tiến hành rebuild lại Project.</p>
 
-<h4 id="khai-bo-gcm-permission">2. Khai báo GCM permission</h4>
+<h4 id="2-khai-báo-gcm-permission">2. Khai báo GCM permission</h4>
 
 <p>Ứng dụng cần truy cập Internet và <code class="highlighter-rouge">wake lock</code> để gửi, nhận thông báo từ GCM server.</p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;manifest</span> <span class="na">package=</span><span class="s">"com.hungdh.gcmdemo"</span><span class="nt">&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;manifest</span> <span class="na">package=</span><span class="s">"com.hungdh.gcmdemo"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.INTERNET"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.WAKE_LOCK"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.permission.RECEIVE"</span> <span class="nt">/&gt;</span>
@@ -60,10 +58,9 @@
       <span class="na">android:protectionLevel=</span><span class="s">"signature"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"com.hungdh.gcmdemo.permission.C2D_MESSAGE"</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/manifest&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<h4 id="code-code-v-code">3. Code, code, và code</h4>
+<h4 id="3-code-code-và-code">3. Code, code, và code</h4>
 
 <p>Cấu trúc chương trình: ngoài class Main ra thì ta cần 3 class với chức năng như sau:</p>
 
@@ -83,7 +80,7 @@
 
 <p>Như đã giới thiệu ở trên, class này sẽ tạo một <code class="highlighter-rouge">instance ID</code> từ Google và nó là duy nhất cho thiết bị và ứng dụng của bạn.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Override</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
 <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onHandleIntent</span><span class="o">(</span><span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>        
     <span class="o">...</span>
     <span class="c1">// [START get token]</span>
@@ -94,14 +91,13 @@
     <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"GCM Registration Token: "</span> <span class="o">+</span> <span class="n">token</span><span class="o">);</span>
     <span class="o">...</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Giả sử yêu cầu này là thành công, bạn sẽ có một token. Và khi đó, ta sẽ tiến hành đăng kí token này lên server do chúng ta xây dựng với các tham số như đã xây dựng trong bảng <code class="highlighter-rouge">gcm_users</code> bằng phương thức <code class="highlighter-rouge">sendRegistrationToServer</code>.</p>
 
 <p>Hãy nhớ đăng kí service này trong <strong>AndroidManifest.xml</strong></p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
     ...
     <span class="nt">&lt;service</span>
         <span class="na">android:name=</span><span class="s">".RegistrationIntentService"</span>
@@ -109,14 +105,13 @@
     <span class="nt">&lt;/service&gt;</span>
 	...
 <span class="nt">&lt;/application&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="myinstanceidlistenerservicejava">MyInstanceIDListenerService.java</h5>
 
 <p>Theo <a href="https://developers.google.com/instance-id/guides/android-implementation">tài liệu</a> chính thức của Google, <code class="highlighter-rouge">InstanceID</code> sẽ có hạn sử dụng tối đa là 6 tháng. Để khắc phục điều này, ta cần extend từ <code class="highlighter-rouge">InstanceIDListenerService</code> để xử lý những thay đổi khi refresh token. Vì vậy, ta nên tạo  <code class="highlighter-rouge">MyInstanceIDListenerService.java</code> để chạy <code class="highlighter-rouge">RegistrationIntentService</code> - giúp chúng ta lấy được token mới.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyInstanceIDListenerService</span> <span class="kd">extends</span> <span class="n">InstanceIDListenerService</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyInstanceIDListenerService</span> <span class="kd">extends</span> <span class="n">InstanceIDListenerService</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onTokenRefresh</span><span class="o">()</span> <span class="o">{</span>
         <span class="c1">// Fetch updated Instance ID token and notify of changes</span>
@@ -124,10 +119,9 @@
         <span class="n">startService</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
     <span class="c">&lt;!-- [START instanceId_listener] --&gt;</span>
     <span class="nt">&lt;service</span>
         <span class="na">android:name=</span><span class="s">".MyInstanceIDListenerService"</span>
@@ -138,14 +132,13 @@
     <span class="nt">&lt;/service&gt;</span>
     <span class="c">&lt;!-- [END instanceId_listener] --&gt;</span>
 <span class="nt">&lt;/application&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<h5 id="to-broadcast-receiver-v-message-handler">Tạo Broadcast Receiver và Message Handler</h5>
+<h5 id="tạo-broadcast-receiver-và-message-handler">Tạo Broadcast Receiver và Message Handler</h5>
 
 <p>Khai báo trong <code class="highlighter-rouge">AndroidManifest.xml</code>:</p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;receiver</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;receiver</span>
   <span class="na">android:name=</span><span class="s">"com.google.android.gms.gcm.GcmReceiver"</span>
   <span class="na">android:exported=</span><span class="s">"true"</span>
   <span class="na">android:permission=</span><span class="s">"com.google.android.c2dm.permission.SEND"</span> <span class="nt">&gt;</span>
@@ -154,14 +147,13 @@
      <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"com.codepath.gcmquickstart"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;/intent-filter&gt;</span>
 <span class="nt">&lt;/receiver&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="mygcmlistenerservicejava">MyGcmListenerService.java</h5>
 
 <p>Tạo file <code class="highlighter-rouge">MyGcmListenerService.java</code> được extends từ <code class="highlighter-rouge">GcmListenerService</code> - sẽ xử lý việc nhận các thông báo từ phía GCM server:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyGcmListenerService</span> <span class="kd">extends</span> <span class="n">GcmListenerService</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyGcmListenerService</span> <span class="kd">extends</span> <span class="n">GcmListenerService</span> <span class="o">{</span>
 
     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">"MyGcmListenerService"</span><span class="o">;</span>
 
@@ -198,26 +190,24 @@
         <span class="n">notificationManager</span><span class="o">.</span><span class="na">notify</span><span class="o">(</span><span class="mi">0</span> <span class="cm">/* ID of notification */</span><span class="o">,</span> <span class="n">notificationBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Và không thể thiếu phần đăng kí service cho class</p>
 
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;service</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;service</span>
 <span class="na">android:name=</span><span class="s">".MyGcmListenerService"</span>
 <span class="na">android:exported=</span><span class="s">"false"</span> <span class="nt">&gt;</span>
     <span class="nt">&lt;intent-filter&gt;</span>
         <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span> <span class="nt">/&gt;</span>
     <span class="nt">&lt;/intent-filter&gt;</span>
 <span class="nt">&lt;/service&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="mainactivityjava">MainActivity.java</h5>
 
 <script src="https://gist.github.com/hungdh0x5e/fe285dbcdf6bc9bd8335.js"></script>
 
-<h4 id="demo">4. Demo</h4>
+<h4 id="4-demo">4. Demo</h4>
 
 <p>Truy cập vào giao diện quản lý của server. Viết nội dung và gửi thông báo cho client.</p>
 
@@ -239,7 +229,7 @@
 GCM là dịch vụ giúp bạn tương tác giữa client - server thông qua máy chủ GCM.
 Trong bài viết này, mình sẽ giới thiệu, hướng dẫn các bạn các bước cơ bản để xây dựng ứng dụng Android sử dụng GCM (bao gồm cả client lẫn server).</p>
 
-<h2 id="m-hnh-cch-vn-hnh-ca-gcm">1. Mô hình, cách vận hành của GCM</h2>
+<h2 id="1-mô-hình-cách-vận-hành-của-gcm">1. Mô hình, cách vận hành của GCM</h2>
 <p><img src="/assets/images/2016/01/gcm-diagram.png" alt="Sơ đồ vận hành của GCM" /></p>
 
 <p>Quá trình hoạt động như sau:</p>
@@ -260,7 +250,7 @@ Trong bài viết này, mình sẽ giới thiệu, hướng dẫn các bạn cá
 <ol>
   <li>Truy cập tới: <a href="https://developers.google.com/mobile/add?platform=android&amp;cntapi=gcm">https://developers.google.com/mobile/</a> để tạo nhanh project.</li>
   <li>
-    <p>Tại đây, bạn cần nhập <code class="highlighter-rouge">App name</code> và <code class="highlighter-rouge">package name</code> vào khung tương ứng. Sau đó chọn tiếp tục.
+    <p>Tại đây, bạn cần nhập <code class="highlighter-rouge">App name</code> và <code class="highlighter-rouge"><span class="k">package</span> <span class="n">name</span></code> vào khung tương ứng. Sau đó chọn tiếp tục.
 <img src="/assets/images/2016/01/gcm-registration-api-1.png" alt="Đăng kí API cho ứng dụng" /></p>
   </li>
   <li>Ở bước này, bạn sẽ bật các API dùng cho ứng dụng của mình (ở đây chỉ demo GCM nên mình chỉ bật Cloud Messaging) bằng cách nhấn vào <code class="highlighter-rouge">Enable Cloud Messaging</code>.
@@ -273,11 +263,11 @@ Cuối cùng là tải file <code class="highlighter-rouge">google-service.json<
 
 <p>Bạn có thể tham khảo tài liệu hướng dẫn chính thức của Google <a href="https://developers.google.com/cloud-messaging/android/client?configured=true">tại đây</a></p>
 
-<h2 id="trin-khai-ng-dng">2. Triển khai ứng dụng.</h2>
+<h2 id="2-triển-khai-ứng-dụng">2. Triển khai ứng dụng.</h2>
 
 <p>Trong bài viết này, mình sẽ hướng dẫn xây dựng server side trước, phía client sẽ có trong bài viết tiếp theo.</p>
 
-<h3 id="xy-dng-server-side">2.1 Xây dựng Server side</h3>
+<h3 id="21-xây-dựng-server-side">2.1 Xây dựng Server side</h3>
 
 <p>Trong tutorial này, mình sẽ sử dụng <code class="highlighter-rouge">PHP</code> để xây dựng server cũng như <code class="highlighter-rouge">MySQL</code> làm cơ sở dữ liệu.</p>
 
