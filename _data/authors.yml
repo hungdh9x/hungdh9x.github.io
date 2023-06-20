@@ -1,0 +1,8 @@
+hungdh:
+  username: hungdh
+  name: Huy Hùng
+  location: Ha Noi, VN
+  url_full: https://hungdh.dev
+  url: hungdh.dev
+  bio: "I'm backend developer with Golang, Ruby on Rails.<br>With a keen interest in command-line interfaces: terminal & tmux, Zsh & Neovim<br>And many other high-end technology stuff..."
+  assets: assets/images/hungdh.png
