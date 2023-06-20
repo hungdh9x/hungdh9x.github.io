@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Huy Hùng - Articles</title>
+    <description>If you can't explain it simply, you don't understand it well enought</description>
+    <link>
+    </link>
+    
+      
+      <item>
+        <title>Hello World</title>
+        
+          <description>&lt;blockquote&gt;
+  &lt;p&gt;Hello World!&lt;br /&gt;
+If you can’t explain it simply, you don’t understand it well enough - Albert Einstein&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        
+        <pubDate>Mon, 19 Jun 2023 10:18:00 +0000</pubDate>
+        <link>
+        /hello-world</link>
+        <guid isPermaLink="true">/hello-world</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Tìm hiểu nginx</title>
+        
+          <description>&lt;h4 id=&quot;i-nginx-là-gì-&quot;&gt;I. Nginx là gì ?&lt;/h4&gt;
+
+</description>
+        
+        <pubDate>Mon, 18 Jul 2016 12:00:00 +0000</pubDate>
+        <link>
+        /tim-hieu-ve-nginx</link>
+        <guid isPermaLink="true">/tim-hieu-ve-nginx</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Triển khai GCM với Android (phần 2)</title>
+        
+          <description>&lt;p&gt;Ở phần một, mình đã giới thiệu GCM và hướng dẫn xây dựng được &lt;code class=&quot;highlighter-rouge&quot;&gt;server side&lt;/code&gt;, phần tiếp theo sẽ là xây dựng &lt;code class=&quot;highlighter-rouge&quot;&gt;client side&lt;/code&gt;. Let’s go!&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 14 Jan 2016 11:18:00 +0000</pubDate>
+        <link>
+        /trien-khai-gcm-voi-android-phan-2</link>
+        <guid isPermaLink="true">/trien-khai-gcm-voi-android-phan-2</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Triển khai GCM với Android</title>
+        
+          <description>&lt;p&gt;Bạn có một ứng dụng, bạn muốn gửi thông báo cho tất cả client mà không muốn mất phí.&lt;br /&gt;
+Điều đó hoàn toàn có thể thực hiện được nếu bạn sử dụng dịch vụ Google Cloud Messaging (GCM) do Google cung cấp.&lt;br /&gt;
+GCM là dịch vụ giúp bạn tương tác giữa client - server thông qua máy chủ GCM.&lt;br /&gt;
+Trong bài viết này, mình sẽ giới thiệu, hướng dẫn các bạn các bước cơ bản để xây dựng ứng dụng Android sử dụng GCM (bao gồm cả client lẫn server).&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 14 Jan 2016 10:18:00 +0000</pubDate>
+        <link>
+        /trien-khai-gcm-voi-android</link>
+        <guid isPermaLink="true">/trien-khai-gcm-voi-android</guid>
+      </item>
+      
+    
+  </channel>
+</rss>

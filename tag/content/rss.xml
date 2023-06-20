@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>hungdh.dev/</title>
+   
+   <link></link>
+   <description>If you can't explain it simply, you don't understand it well enought</description>
+   <language>en-uk</language>
+   <managingEditor> </managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Hello World</title>
+	  <link>//hello-world</link>
+	  <author></author>
+	  <pubDate>2023-06-19T10:18:00+00:00</pubDate>
+	  <guid>//hello-world</guid>
+	  <description><![CDATA[
+	     <blockquote>
+  <p>Hello World!<br />
+If you can’t explain it simply, you don’t understand it well enough - Albert Einstein</p>
+</blockquote>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Tìm hiểu nginx</title>
+	  <link>//tim-hieu-ve-nginx</link>
+	  <author></author>
+	  <pubDate>2016-07-18T12:00:00+00:00</pubDate>
+	  <guid>//tim-hieu-ve-nginx</guid>
+	  <description><![CDATA[
+	     <h4 id="i-nginx-là-gì-">I. Nginx là gì ?</h4>
+
+<ol>
+  <li><strong>Khái niệm</strong>
+    <ul>
+      <li>Nginx (engine x) là một web server (tương tự apache), vượt trội về khả năng xử lý các file tĩnh so với apache (mạnh về xử lý các file động). Nó có thể đóng vai trò là một reverse proxy cho các giao thức: HTTP, HTTPS, IMAP, POP3, SMTP cũng như hỗ trợ cân bằng tải (load balancer).</li>
+      <li>Nginx được viết bởi <a href="http://sysoev.ru/en/">Igor Sysoev</a>, được công bố năm 2002. Nginx chạy trên Unix, Linux, các biến thể BSD, Mac OS X, Solaris, AIX, HP-UX và Microsoft Windows.</li>
+    </ul>
+  </li>
+  <li><strong>Tính năng</strong></li>
+</ol>
+
+<p>a. Basic HTTP server features</p>
+
+<ul>
+  <li>Xử lý các file tĩnh và file index, tự động đánh index</li>
+  <li>Tăng tốc reverse proxy với việc caching, cân bằng tải (load banlancing), khả năng chịu lỗi (fault tolerance)</li>
+  <li>Hỗ trợ tăng tốc caching với FastCGI, SCGI, uwsgi</li>
+  <li>Hỗ trợ giao thức SSL, TLS SNI, HTTP/2</li>
+  <li>Tạo virtual host</li>
+  <li>Giới hạn số kết nối, yêu cầu từ một địa chỉ IP</li>
+  <li>Kiểm soát truy cập bởi: địa chỉ IP, mật khẩu (HTTP basic authentication) và từ các yêu cầu con (subrequest)</li>
+</ul>
+
+<p>b. TCP/UDP proxy server features</p>
+
+<ul>
+  <li>Load balancing and fault tolerance</li>
+  <li>Access control based on client address</li>
+</ul>
+
+<p>c. Mail proxy server features</p>
+
+<ul>
+  <li>Chứng thực người dùng sử dụng HTTP authentication và chuyển hướng kết nối tới SMTP server bên trong.</li>
+  <li>Hỗ trợ: POP3, IMAP, SMTP, SSL, STARTTLS and STLS</li>
+</ul>
+
+<h4 id="ii-cài-đặt-cấu-hình-virtual-host">II. Cài đặt, cấu hình virtual host</h4>
+
+<p>Cài đặt nginx:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>apt-get <span class="nb">install </span>nginx
+</code></pre></div></div>
+
+<p><em>Core Context</em></p>
+
+<h5 id="the-main-context">The main context</h5>
+
+<p>Tên gọi phổ biến là <code class="language-plaintext highlighter-rouge">main</code> hay <code class="language-plaintext highlighter-rouge">global</code> context. Đây là context duy nhất mà không chứa trong bất kì context (context block) nào khác.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># The main context is here, outside any other contexts</span>
+<span class="n">context</span> <span class="p">{</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Các thông số phổ biến trong main context: the number of workers, the file to save the main process’s ID</p>
+
+<h5 id="the-event-context">The event context</h5>
+
+<p>Chứa trong <code class="language-plaintext highlighter-rouge">main context</code>, được sử dụng để thiết lập các global option ảnh hưởng đến cách nginx xử lý các kết nối chung. Và context này là duy nhất trong nginx configure</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>events {
+    worker_connections 768;
+    # multi_accept on;
+}
+</code></pre></div></div>
+
+<h5 id="the-http-context">The HTTP context</h5>
+
+<p>Trong khi cấu hình nginx như một web server hay reverse proxy, <code class="language-plaintext highlighter-rouge">http</code> context sẽ giữ đa số các cấu hình. Context này sẽ chứa tất cả các tiêu chí, các context cần thiết khác để định nghĩa cách chương trình sẽ handle các kết nối HTTP, HTTPS. Và nó ngang hàng với <code class="language-plaintext highlighter-rouge">event context</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http {
+   ...
+}
+</code></pre></div></div>
+
+<p>Một vài tiêu chí:</p>
+
+<ul>
+  <li>Đường dẫn cho log (<code class="language-plaintext highlighter-rouge">access_log</code>, <code class="language-plaintext highlighter-rouge">error_log</code>)</li>
+  <li>Cấu hình hiển thị khi server lỗi (<code class="language-plaintext highlighter-rouge">error_page</code>)</li>
+  <li>Tiêu chí nén (<code class="language-plaintext highlighter-rouge">gzip</code>, <code class="language-plaintext highlighter-rouge">gzip_disable</code>)</li>
+  <li>TCP keep alive (<code class="language-plaintext highlighter-rouge">keepalive_disable</code>, <code class="language-plaintext highlighter-rouge">keepalive_requests</code>, <code class="language-plaintext highlighter-rouge">keepalive_timeout</code>)</li>
+  <li>Các luật (rule) mà Nginx sẽ làm theo để cố gắng tối ưu hóa gói tin và system call (<code class="language-plaintext highlighter-rouge">sendfile</code>, <code class="language-plaintext highlighter-rouge">tcp_nodelay</code>, <code class="language-plaintext highlighter-rouge">tcp_nopush</code>)</li>
+  <li>Thư mục chứa website (<code class="language-plaintext highlighter-rouge">root</code>), index file (<code class="language-plaintext highlighter-rouge">index</code>)</li>
+</ul>
+
+<h5 id="the-server-context">The Server context</h5>
+
+<p>Được định nghĩa bên trong <code class="language-plaintext highlighter-rouge">http context</code>. Đây là phần giúp ta cấu hình virtual host.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">listen</code>: Địa chỉ IP, port được thiết kế để nhận response. Nếu yêu cầu từ client có giá trị trùng với trường này, block này sẽ được lựa chọn để xử lý kết nối.</li>
+  <li><code class="language-plaintext highlighter-rouge">server_name</code>: để kiểm tra map với domain từ request, nếu trùng sẽ đẩy request đến host này.</li>
+  <li>Ngoài ra còn có một số tiêu chí (có thể định nghĩa trong <code class="language-plaintext highlighter-rouge">http context</code>) như logging, document root, compression, …</li>
+</ul>
+
+<h5 id="the-location-context">The Location context</h5>
+
+<p><code class="language-plaintext highlighter-rouge">Location context</code> chứa các config ứng với mỗi khu vực trong <code class="language-plaintext highlighter-rouge">server context</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+    server_name example.com;
+
+    location /upload {
+        ...
+    }
+
+    location /admin {
+        ...
+    }
+}
+</code></pre></div></div>
+
+<p>Như example trên, khi người dùng truy cập vào url <code class="language-plaintext highlighter-rouge">http://example.com/upload</code> sẽ map với các rule trong location <code class="language-plaintext highlighter-rouge">upload</code>. Tương tự với location <code class="language-plaintext highlighter-rouge">admin</code>. Điều này giúp ta có thể thiết lập các chính sách truy cập phù hợp với từng khu vực.</p>
+
+<p>VD:</p>
+
+<ul>
+  <li>Cấm mọi truy cập tới khu vực <code class="language-plaintext highlighter-rouge">admin</code> trừ các IP trong dải mạng <code class="language-plaintext highlighter-rouge">192.168.1.0/24</code></li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>location /admin {
+    allow 192.168.1.0/24;
+    deny all;
+}
+</code></pre></div></div>
+
+<p>Các tiêu chí xuất hiện trong <code class="language-plaintext highlighter-rouge">location context</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">root /data;</code>: thêm đường dẫn.</li>
+  <li><code class="language-plaintext highlighter-rouge">proxy_pass $IP_proxy</code>: chuyển request tới $IP_proxy - sử dụng để thiết lập nginx như reverse proxy</li>
+  <li><code class="language-plaintext highlighter-rouge">return 404;</code>: return status code, or redirect <code class="language-plaintext highlighter-rouge">return 301 http://www.example.com/moved/here;</code></li>
+  <li><code class="language-plaintext highlighter-rouge">rewrite</code>: rewrite url</li>
+  <li><code class="language-plaintext highlighter-rouge">sub_filter</code> : rewrite HTTP response</li>
+</ul>
+
+<p>Reference:</p>
+<ul>
+  <li><a href="https://docs.nginx.com/nginx/admin-guide/web-server/web-server/">Nginx web-server</a></li>
+  <li><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#variables">nginx-http-core</a></li>
+</ul>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Triển khai GCM với Android (phần 2)</title>
+	  <link>//trien-khai-gcm-voi-android-phan-2</link>
+	  <author></author>
+	  <pubDate>2016-01-14T11:18:00+00:00</pubDate>
+	  <guid>//trien-khai-gcm-voi-android-phan-2</guid>
+	  <description><![CDATA[
+	     <p>Ở phần một, mình đã giới thiệu GCM và hướng dẫn xây dựng được <code class="highlighter-rouge">server side</code>, phần tiếp theo sẽ là xây dựng <code class="highlighter-rouge">client side</code>. Let’s go!</p>
+
+<p>Để tiếp tục phần hai, hãy chắc chắn bạn đã hoàn thành phần một (đã có file <code class="highlighter-rouge">google-service.json</code> trong thư mục <code class="highlighter-rouge">app</code> của project).</p>
+
+<h4 id="1-khai-báo-thư-viện">1. Khai báo thư viện</h4>
+
+<ul>
+  <li>Tiến hành mở file <strong>build.gradle</strong> của <code class="highlighter-rouge">app</code> và khai báo như sau:</li>
+</ul>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.google.gms.google-services'</span>
+<span class="k">dependencies</span> <span class="o">{</span>
+  <span class="n">compile</span> <span class="s2">"com.google.android.gms:play-services-gcm:8.4.0"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Tiếp tục mở file <strong>build.gradle</strong> của <code class="highlighter-rouge">project</code></li>
+</ul>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">dependencies</span> <span class="o">{</span>
+    <span class="n">classpath</span> <span class="s1">'com.android.tools.build:gradle:1.5.0'</span>
+    <span class="n">classpath</span> <span class="s1">'com.google.gms:google-services:2.0.0-alpha3'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Sau đó, tiến hành rebuild lại Project.</p>
+
+<h4 id="2-khai-báo-gcm-permission">2. Khai báo GCM permission</h4>
+
+<p>Ứng dụng cần truy cập Internet và <code class="highlighter-rouge">wake lock</code> để gửi, nhận thông báo từ GCM server.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;manifest</span> <span class="na">package=</span><span class="s">"com.hungdh.gcmdemo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.INTERNET"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.WAKE_LOCK"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.permission.RECEIVE"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;permission</span> <span class="na">android:name=</span><span class="s">"com.hungdh.gcmdemo.permission.C2D_MESSAGE"</span>
+      <span class="na">android:protectionLevel=</span><span class="s">"signature"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"com.hungdh.gcmdemo.permission.C2D_MESSAGE"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/manifest&gt;</span>
+</code></pre></div></div>
+
+<h4 id="3-code-code-và-code">3. Code, code, và code</h4>
+
+<p>Cấu trúc chương trình: ngoài class Main ra thì ta cần 3 class với chức năng như sau:</p>
+
+<ol>
+  <li>
+    <p><strong>RegistrationIntentService.java</strong>: một IntentService tiến hành tạo token và đăng kí token đó cho server mà ta đã xây dựng.</p>
+  </li>
+  <li>
+    <p><strong>MyInstanceIDListenerService.java</strong>: khi token thay đổi, sẽ gọi đến nó với phương thức <code class="highlighter-rouge">onTokenRefresh</code>.</p>
+  </li>
+  <li>
+    <p><strong>MyGcmListenerService.java</strong>: lắng nghe các thông tin từ GCM server (không phải server của ta tự xây dựng đâu) với phương thức <code class="highlighter-rouge">onMessageReceived</code>.</p>
+  </li>
+</ol>
+
+<h5 id="registrationintentservicejava">RegistrationIntentService.java</h5>
+
+<p>Như đã giới thiệu ở trên, class này sẽ tạo một <code class="highlighter-rouge">instance ID</code> từ Google và nó là duy nhất cho thiết bị và ứng dụng của bạn.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onHandleIntent</span><span class="o">(</span><span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>        
+    <span class="o">...</span>
+    <span class="c1">// [START get token]</span>
+    <span class="n">InstanceID</span> <span class="n">instanceID</span> <span class="o">=</span> <span class="n">InstanceID</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">token</span> <span class="o">=</span> <span class="n">instanceID</span><span class="o">.</span><span class="na">getToken</span><span class="o">(</span><span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">gcm_defaultSenderId</span><span class="o">),</span>
+                    <span class="n">GoogleCloudMessaging</span><span class="o">.</span><span class="na">INSTANCE_ID_SCOPE</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="c1">// [END get_token]</span>
+    <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"GCM Registration Token: "</span> <span class="o">+</span> <span class="n">token</span><span class="o">);</span>
+    <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Giả sử yêu cầu này là thành công, bạn sẽ có một token. Và khi đó, ta sẽ tiến hành đăng kí token này lên server do chúng ta xây dựng với các tham số như đã xây dựng trong bảng <code class="highlighter-rouge">gcm_users</code> bằng phương thức <code class="highlighter-rouge">sendRegistrationToServer</code>.</p>
+
+<p>Hãy nhớ đăng kí service này trong <strong>AndroidManifest.xml</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
+    ...
+    <span class="nt">&lt;service</span>
+        <span class="na">android:name=</span><span class="s">".RegistrationIntentService"</span>
+        <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/service&gt;</span>
+	...
+<span class="nt">&lt;/application&gt;</span>
+</code></pre></div></div>
+
+<h5 id="myinstanceidlistenerservicejava">MyInstanceIDListenerService.java</h5>
+
+<p>Theo <a href="https://developers.google.com/instance-id/guides/android-implementation">tài liệu</a> chính thức của Google, <code class="highlighter-rouge">InstanceID</code> sẽ có hạn sử dụng tối đa là 6 tháng. Để khắc phục điều này, ta cần extend từ <code class="highlighter-rouge">InstanceIDListenerService</code> để xử lý những thay đổi khi refresh token. Vì vậy, ta nên tạo  <code class="highlighter-rouge">MyInstanceIDListenerService.java</code> để chạy <code class="highlighter-rouge">RegistrationIntentService</code> - giúp chúng ta lấy được token mới.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyInstanceIDListenerService</span> <span class="kd">extends</span> <span class="n">InstanceIDListenerService</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onTokenRefresh</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Fetch updated Instance ID token and notify of changes</span>
+        <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">RegistrationIntentService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">startService</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;/application&gt;</span>
+    <span class="c">&lt;!-- [START instanceId_listener] --&gt;</span>
+    <span class="nt">&lt;service</span>
+        <span class="na">android:name=</span><span class="s">".MyInstanceIDListenerService"</span>
+        <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;intent-filter&gt;</span>
+            <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.gms.iid.InstanceID"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/intent-filter&gt;</span>
+    <span class="nt">&lt;/service&gt;</span>
+    <span class="c">&lt;!-- [END instanceId_listener] --&gt;</span>
+<span class="nt">&lt;/application&gt;</span>
+</code></pre></div></div>
+
+<h5 id="tạo-broadcast-receiver-và-message-handler">Tạo Broadcast Receiver và Message Handler</h5>
+
+<p>Khai báo trong <code class="highlighter-rouge">AndroidManifest.xml</code>:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;receiver</span>
+  <span class="na">android:name=</span><span class="s">"com.google.android.gms.gcm.GcmReceiver"</span>
+  <span class="na">android:exported=</span><span class="s">"true"</span>
+  <span class="na">android:permission=</span><span class="s">"com.google.android.c2dm.permission.SEND"</span> <span class="nt">&gt;</span>
+  <span class="nt">&lt;intent-filter&gt;</span>
+     <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span> <span class="nt">/&gt;</span>
+     <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"com.codepath.gcmquickstart"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/receiver&gt;</span>
+</code></pre></div></div>
+
+<h5 id="mygcmlistenerservicejava">MyGcmListenerService.java</h5>
+
+<p>Tạo file <code class="highlighter-rouge">MyGcmListenerService.java</code> được extends từ <code class="highlighter-rouge">GcmListenerService</code> - sẽ xử lý việc nhận các thông báo từ phía GCM server:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyGcmListenerService</span> <span class="kd">extends</span> <span class="n">GcmListenerService</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">"MyGcmListenerService"</span><span class="o">;</span>
+
+    <span class="c1">// [START receive_message]</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onMessageReceived</span><span class="o">(</span><span class="n">String</span> <span class="n">from</span><span class="o">,</span> <span class="n">Bundle</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"message"</span><span class="o">);</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"From: "</span> <span class="o">+</span> <span class="n">from</span><span class="o">);</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Message: "</span> <span class="o">+</span> <span class="n">message</span><span class="o">);</span>
+       
+        <span class="n">sendNotification</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+        <span class="c1">// [END_EXCLUDE]</span>
+    <span class="o">}</span>
+    <span class="c1">// [END receive_message]</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">sendNotification</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">MainActivity</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">intent</span><span class="o">.</span><span class="na">addFlags</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_ACTIVITY_CLEAR_TOP</span><span class="o">);</span>
+        <span class="n">PendingIntent</span> <span class="n">pendingIntent</span> <span class="o">=</span> <span class="n">PendingIntent</span><span class="o">.</span><span class="na">getActivity</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">intent</span><span class="o">,</span>
+                <span class="n">PendingIntent</span><span class="o">.</span><span class="na">FLAG_ONE_SHOT</span><span class="o">);</span>
+
+        <span class="n">Uri</span> <span class="n">defaultSoundUri</span> <span class="o">=</span> <span class="n">RingtoneManager</span><span class="o">.</span><span class="na">getDefaultUri</span><span class="o">(</span><span class="n">RingtoneManager</span><span class="o">.</span><span class="na">TYPE_NOTIFICATION</span><span class="o">);</span>
+        <span class="n">NotificationCompat</span><span class="o">.</span><span class="na">Builder</span> <span class="n">notificationBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NotificationCompat</span><span class="o">.</span><span class="na">Builder</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setSmallIcon</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">mipmap</span><span class="o">.</span><span class="na">ic_launcher</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setContentTitle</span><span class="o">(</span><span class="s">"GCM Message"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setContentText</span><span class="o">(</span><span class="n">message</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setAutoCancel</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setSound</span><span class="o">(</span><span class="n">defaultSoundUri</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setContentIntent</span><span class="o">(</span><span class="n">pendingIntent</span><span class="o">);</span>
+
+        <span class="n">NotificationManager</span> <span class="n">notificationManager</span> <span class="o">=</span>
+                <span class="o">(</span><span class="n">NotificationManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">Context</span><span class="o">.</span><span class="na">NOTIFICATION_SERVICE</span><span class="o">);</span>
+
+        <span class="n">notificationManager</span><span class="o">.</span><span class="na">notify</span><span class="o">(</span><span class="mi">0</span> <span class="cm">/* ID of notification */</span><span class="o">,</span> <span class="n">notificationBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Và không thể thiếu phần đăng kí service cho class</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;service</span>
+<span class="na">android:name=</span><span class="s">".MyGcmListenerService"</span>
+<span class="na">android:exported=</span><span class="s">"false"</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;intent-filter&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/service&gt;</span>
+</code></pre></div></div>
+
+<h5 id="mainactivityjava">MainActivity.java</h5>
+
+<script src="https://gist.github.com/hungdh0x5e/fe285dbcdf6bc9bd8335.js"></script>
+
+<h4 id="4-demo">4. Demo</h4>
+
+<p>Truy cập vào giao diện quản lý của server. Viết nội dung và gửi thông báo cho client.</p>
+
+<p><img src="/assets/images/2016/01/gcm-demo-1.PNG" alt="Screenshot" /></p>
+
+<p>Source code bạn có thể tham khảo <a href="https://github.com/hungdh0x5e/GoogleCloudMessaging">tại đây</a>.</p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Triển khai GCM với Android</title>
+	  <link>//trien-khai-gcm-voi-android</link>
+	  <author></author>
+	  <pubDate>2016-01-14T10:18:00+00:00</pubDate>
+	  <guid>//trien-khai-gcm-voi-android</guid>
+	  <description><![CDATA[
+	     <p>Bạn có một ứng dụng, bạn muốn gửi thông báo cho tất cả client mà không muốn mất phí.<br />
+Điều đó hoàn toàn có thể thực hiện được nếu bạn sử dụng dịch vụ Google Cloud Messaging (GCM) do Google cung cấp.<br />
+GCM là dịch vụ giúp bạn tương tác giữa client - server thông qua máy chủ GCM.<br />
+Trong bài viết này, mình sẽ giới thiệu, hướng dẫn các bạn các bước cơ bản để xây dựng ứng dụng Android sử dụng GCM (bao gồm cả client lẫn server).</p>
+
+<h2 id="1-mô-hình-cách-vận-hành-của-gcm">1. Mô hình, cách vận hành của GCM</h2>
+
+<p><img src="/assets/images/2016/01/gcm-diagram.png" alt="Sơ đồ vận hành của GCM" /></p>
+
+<p>Quá trình hoạt động như sau:</p>
+
+<ol>
+  <li>Client gửi <code class="language-plaintext highlighter-rouge">senderID</code>, <code class="language-plaintext highlighter-rouge">application id</code> tới <code class="language-plaintext highlighter-rouge">GCM server</code> để đăng kí.</li>
+  <li>Nếu các thông số hợp lệ, <code class="language-plaintext highlighter-rouge">GCM server</code> sẽ trả về <code class="language-plaintext highlighter-rouge">registration id</code> cho client.</li>
+  <li>Sau khi nhận được <code class="language-plaintext highlighter-rouge">registration id</code> mà <code class="language-plaintext highlighter-rouge">GCM server</code> trả về, client sẽ  gửi <code class="language-plaintext highlighter-rouge">registration id</code> này lên server (do ta tự xây dựng).</li>
+  <li>Server nhận <code class="language-plaintext highlighter-rouge">registration id</code> và lưu nó vào CSDL (phục vụ cho việc quản lý, gửi thông báo sau này).</li>
+  <li>Mỗi khi muốn thông báo tới client, server sẽ gửi yêu cầu tới <code class="language-plaintext highlighter-rouge">GCM server</code> với danh sách các <code class="language-plaintext highlighter-rouge">registration id</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">GCM server</code> sẽ thông báo tin nhắn tới các client (dựa vào <code class="language-plaintext highlighter-rouge">registration id</code> mà server cung cấp).</li>
+</ol>
+
+<p><strong>Đăng kí với Google Cloud Messaging</strong></p>
+
+<p>Để có được <code class="language-plaintext highlighter-rouge">senderID</code>, <code class="language-plaintext highlighter-rouge">application id</code> hãy làm như sau:</p>
+
+<ol>
+  <li>Truy cập tới: <a href="https://developers.google.com/mobile/add?platform=android&amp;cntapi=gcm">https://developers.google.com/mobile/</a> để tạo nhanh project.</li>
+  <li>
+    <p>Tại đây, bạn cần nhập <code class="language-plaintext highlighter-rouge">App name</code> và <code class="language-plaintext highlighter-rouge">package name</code> vào khung tương ứng. Sau đó chọn tiếp tục.
+<img src="/assets/images/2016/01/gcm-registration-api-1.png" alt="Đăng kí API cho ứng dụng" /></p>
+  </li>
+  <li>Ở bước này, bạn sẽ bật các API dùng cho ứng dụng của mình (ở đây chỉ demo GCM nên mình chỉ bật Cloud Messaging) bằng cách nhấn vào <code class="language-plaintext highlighter-rouge">Enable Cloud Messaging</code>.
+Kết quả thu được:
+<img src="/assets/images/2016/01/gcm-registration-api-2.png" alt="Đăng kí API cho ứng dụng" />
+Bạn có thể thấy 2 giá trị mà mình cần sử dụng: <strong>Server API Key</strong> (đươc sử dụng khi server gửi yêu cầu tới GCM server), <strong>Sender ID</strong> (dùng cho client).</li>
+  <li>Nhấn <code class="language-plaintext highlighter-rouge">Generate configuration files</code> để tạo file <code class="language-plaintext highlighter-rouge">google-service.json</code>, đây là file config được sử dụng tại client.
+Cuối cùng là tải file <code class="language-plaintext highlighter-rouge">google-service.json</code>, và di chuyển vào thư mục <code class="language-plaintext highlighter-rouge">/app/</code> trong project của bạn.</li>
+</ol>
+
+<p>Bạn có thể tham khảo tài liệu hướng dẫn chính thức của Google <a href="https://developers.google.com/cloud-messaging/android/client?configured=true">tại đây</a></p>
+
+<h2 id="2-triển-khai-ứng-dụng">2. Triển khai ứng dụng.</h2>
+
+<p>Trong bài viết này, mình sẽ hướng dẫn xây dựng server side trước, phía client sẽ có trong bài viết tiếp theo.</p>
+
+<h3 id="21-xây-dựng-server-side">2.1 Xây dựng Server side</h3>
+
+<p>Trong tutorial này, mình sẽ sử dụng <code class="language-plaintext highlighter-rouge">PHP</code> để xây dựng server cũng như <code class="language-plaintext highlighter-rouge">MySQL</code> làm cơ sở dữ liệu.</p>
+
+<p><strong>Xây dựng CSDL</strong></p>
+
+<ol>
+  <li>Mở phpmyadmin để tạo database với tên là <code class="language-plaintext highlighter-rouge">gcm</code>.</li>
+  <li>Vào database <code class="language-plaintext highlighter-rouge">gcm</code> và truy vấn câu query dưới để tạo bảng <code class="language-plaintext highlighter-rouge">gcm_users</code>
+<script src="https://gist.github.com/hungdh0x5e/9feae65b241f36fb248e.js"></script></li>
+</ol>
+
+<p><strong>Xây dựng server</strong></p>
+
+<ol>
+  <li>Tạo file <code class="language-plaintext highlighter-rouge">config.php</code> để lưu thông tin về database và google api key.
+<script src="https://gist.github.com/hungdh0x5e/d672489ff2c48cb70ea7.js"></script></li>
+  <li>Một file khác <code class="language-plaintext highlighter-rouge">db_connect.php</code> để tiến hành kết nối với CSDL (bao gồm việc open và close).
+<script src="https://gist.github.com/hungdh0x5e/3383e5f729c5053d72db.js"></script></li>
+  <li>File <code class="language-plaintext highlighter-rouge">db_functions.php</code> chứa các phương thức thao tác với CSDL như thêm mới (storeUser), lấy toàn bộ danh sách user (getAllUsers). 
+Bạn có thể xem nội dung chi tiết <a href="https://gist.github.com/hungdh0x5e/6f04d2e4b205d440ac1d">tại đây</a>;</li>
+  <li>File <code class="language-plaintext highlighter-rouge">GCM.php</code> dùng để gửi yêu cầu thông báo tới GCM server.
+<script src="https://gist.github.com/hungdh0x5e/ff98e4007e4aec0b2aba.js"></script></li>
+  <li>Tạo file <code class="language-plaintext highlighter-rouge">register.php</code> để nhận truy vấn từ client, và lưu trữ thông tin vào trong CSDL. 
+Các tham số client cần phải gửi <code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">email</code>, <code class="language-plaintext highlighter-rouge">registration id</code>.
+<script src="https://gist.github.com/hungdh0x5e/77c3836a45b76f9e58fa.js"></script></li>
+  <li>Tạo file <code class="language-plaintext highlighter-rouge">send_message.php</code> để gửi thông báo tới client thông qua GCM server.
+<script src="https://gist.github.com/hungdh0x5e/76ff3d300b1007d92de0.js"></script></li>
+  <li>Cuối cùng là tạo file <code class="language-plaintext highlighter-rouge">index.php</code> có nhiệ̣m vụ̣ hiể̉n thị̣ danh sách các client đã đăng kí , và cho phép gửi tin nhắn tới từng thiết bị̣. Do code khá dài nên mình sẽ dẫn link để các bạn tham khảo.
+<a href="https://gist.github.com/hungdh0x5e/a193f86ddbe2c234ba99">index.php</a></li>
+</ol>
+
+<p>Như vậy là đã xây dựng xong server side, giao diện quản lý sẽ tương tự như sau
+<img src="/assets/images/2016/01/gcm-admin.png" alt="Giao diện quản lý" /></p>
+
+<p><strong>Lưu ý:</strong> Chỉ xây dựng <code class="language-plaintext highlighter-rouge">client side</code> khi bạn đã xây dựng <code class="language-plaintext highlighter-rouge">server side</code> thành công.<br />
+Trong bài viết tiếp theo, mình sẽ hướng dẫn cách xây dựng phía <code class="language-plaintext highlighter-rouge">client</code>.<br />
+Toàn bộ code phần server bạn có thể tham khảo <a href="https://github.com/hungdh0x5e/GoogleCloudMessaging/tree/master/gcm">tại đây</a></p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>
