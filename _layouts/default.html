@@ -19,11 +19,14 @@
     <!-- Styles'n'Scripts -->
     <link rel="stylesheet" type="text/css" href="{{ "assets/css/screen.css" | relative_url }}" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
-    <link rel="stylesheet" type="text/css" href="{{ "assets/css/syntax.css" | relative_url }}" />
+    <!-- <link rel="stylesheet" type="text/css" href="{{ "assets/css/syntax.css" | relative_url }}" /> -->
 
     <!-- highlight.js -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
-    <style>.hljs { background: none; }</style>
+    <link rel="stylesheet" href="{{ "assets/css/gruvbox-dark-medium.css" | relative_url }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <!-- <style>.hljs { background: none; }</style> -->
+
+    <link rel="stylesheet" href="{{ "assets/css/copy-code.css" | relative_url }}">
 
     <!-- Ghost outputs important style and meta data with this tag -->
     {% include head.html %}
@@ -46,8 +49,10 @@
         </footer>
     </div>
     <!-- highlight.js -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script> -->
+    <script>hljs.highlightAll();</script>
+    <!-- dynamic add copy-code button into block code -->
+    <script src="{{ "assets/js/copy-code.js" | relative_url }}"></script>
 
     <!-- jQuery needs to come before `{{ghost_foot}}` so that jQuery can be used in code injection -->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
