@@ -1,0 +1,147 @@
+html {
+  line-height: 1.15;
+  text-size-adjust: 100%;
+}
+
+.root {
+  font-family: "Oxygen", "PT Sans", "Segoe UI", "Ubuntu", sans-serif;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+code,
+pre {
+  font-family: "Fira Code", Menlo, Monaco, Consolas, monospace;
+}
+
+div {
+  display: block;
+}
+
+body {
+  background-color: #272727;
+  /* padding: 10px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+.terminal {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.55) 1rem 1rem 3rem;
+  -webkit-box-align: stretch;
+  align-items: stretch;
+  background-color: #282828;
+  border-radius: 15px;
+  color: rgb(239, 240, 235);
+  flex-direction: column;
+  height: auto;
+  max-height: 85vh;
+  margin: 0px 5vh 5rem;
+  position: relative;
+  width: 50vw;
+}
+
+.terminal .menubar {
+  background-color: #1d2021;
+  padding: 10px;
+  border-radius: 15px 15px 0 0;
+}
+
+.hostname {
+  color: rgb(254, 128, 25);
+}
+
+.prompt {
+  color: rgb(152, 151, 26);
+}
+
+.prompt::before {
+  color: rgb(184, 187, 38);
+  content: "❯";
+  margin-right: 0.5rem;
+}
+
+.prompt::after {
+  color: rgb(108, 108, 108);
+  content: "↵";
+  margin-left: 0.5rem;
+}
+
+.terminal .infor {
+  color: rgb(239, 240, 235);
+  flex: 1 1 0%;
+  font-family: "Fira Code";
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  padding: 1rem;
+  overflow: auto;
+
+  .content {
+    margin-bottom: 0.5rem;
+  }
+
+  .description {
+    line-height: 1.5rem;
+  }
+
+  .endpoint {
+    margin-bottom: 0.75rem;
+    margin-left: calc(1rem);
+    width: fit-content;
+
+    .icon {
+      margin-bottom: -0.25rem;
+    }
+
+    .contact {
+      color: rgb(239, 240, 235);
+      text-decoration: none;
+    }
+    .contact::before {
+      color: rgb(108, 108, 108);
+      content: "/";
+      margin-right: 0.25rem;
+    }
+  }
+}
+
+a {
+  background-color: transparent;
+}
+
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@media (max-width: 1280px) {
+  .terminal {
+    width: 60vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  .terminal {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .terminal {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 425px) {
+  .terminal {
+    width: 90vw;
+  }
+}

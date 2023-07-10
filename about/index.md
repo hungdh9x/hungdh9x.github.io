@@ -14,6 +14,3 @@ Like many other developers, I also use a custom mechanical keyboard: [QK65](http
 
 And many other high-end technology stuff...
 
----
-
-*Big thanks to [Jekyll](https://jekyllrb.com/) and [Jasper](https://github.com/jekyllt/jasper) for helping to config, generate, and publish this website.*

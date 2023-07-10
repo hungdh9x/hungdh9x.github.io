@@ -1,37 +1,201 @@
----
-layout: default
-title: Huy Hùng
-cover: 'assets/images/cover1.jpg'
-class: 'home-template'
-navigation: True
-logo: 'assets/images/ghost.png'
-current: home
----
-<!-- < default -->
-<!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>HungDH - all about HungDH</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!-- The big featured header  -->
-<header class="main-header {% if page.cover %}"
-        style="background-image: url({{ page.cover | relative_url }}) {% else %}no-cover{% endif %}">
-        <nav class="main-nav overlay clearfix">
-            {% if page.logo %}<a class="blog-logo" href="{{ "/" | relative_url }}"><img src="{{ page.logo | relative_url }}" alt="Blog Logo" /></a>{% endif %}
-        {% if page.navigation %}
-            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
-        {% endif %}
-    </nav>
-    <div class="vertical">
-        <div class="main-header-content inner">
-            <h1 class="page-title">{{ site.name }}</h1>
-            <h2 class="page-description">{{ site.description }}</h2>
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="assets/images/fav.ico" />
+
+    <!-- Meta for robots -->
+    <meta name="revisit-after" content="1 days" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Meta for social networks -->
+    <meta property="og:site_name" content="hungdh.dev" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HungDH - all about HungDH" />
+    <meta property="og:description" content="Coding for food" />
+    <meta property="og:url" content="https://hungdh.dev" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="HungDH - all about HungDH" />
+    <meta name="twitter:description" content="Coding for food" />
+    <meta name="twitter:url" content="https://hungdh.dev" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <link href="assets/css/terminal.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="terminal">
+      <div class="menubar">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="54"
+          height="14"
+          viewBox="0 0 54 14"
+        >
+          <g fill="none" fill-rule="evenodd">
+            <circle
+              cx="6"
+              cy="6"
+              r="6"
+              fill="#ff5f56"
+              stroke="#e0443e"
+              stroke-width=".5"
+            ></circle>
+            <circle
+              cx="26"
+              cy="6"
+              r="6"
+              fill="#ffbd2e"
+              stroke="#dea123"
+              stroke-width=".5"
+            ></circle>
+            <circle
+              cx="46"
+              cy="6"
+              r="6"
+              fill="#27c93f"
+              stroke="#1aab29"
+              stroke-width=".5"
+            ></circle>
+          </g>
+        </svg>
+      </div>
+      <div class="infor">
+        <div class="content">
+          <code class="hostname">~/hungdh.dev</code>
         </div>
+        <div class="content"><code class="prompt">uname -a</code></div>
+        <div class="content">
+          <code class="description"
+            >7+ years of experience coding for food!<br /><br
+          /></code>
+        </div>
+        <div class="content"><code class="prompt">skills</code></div>
+        <div class="content">
+          <code class="description"
+            >* Dev: Go, Java, Rails<br />* Env: neovim, tmux, zsh<br /><br
+          /></code>
+        </div>
+
+        <div class="content"><code class="prompt">contacts</code></div>
+        <div class="content">
+          <div class="endpoint">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44
+              5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09
+              1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9
+              18.13V22"
+              ></path></svg
+            ><code
+              ><a
+                href="https://github.com/hungdh0x5e"
+                rel="noreferrer"
+                target="_blank"
+                class="contact"
+                >hungdh0x5e</a
+              ></code
+            >
+          </div>
+          <div class="endpoint">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              ></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle></svg
+            ><code class="jDNRPL"
+              ><a
+                href="https://linkedin.com/in/hungdh0x5e"
+                rel="noreferrer"
+                target="_blank"
+                class="contact"
+                >hungdh0x5e</a
+              ></code
+            >
+          </div>
+          <div class="endpoint">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon"
+            >
+              <path
+                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+              ></path></svg
+            ><code
+              ><a
+                href="https://twitter.com/@hungdh0x5e"
+                rel="noreferrer"
+                target="_blank"
+                class="contact"
+                >@hungdh0x5e</a
+              ></code
+            >
+          </div>
+          <div class="endpoint">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon"
+            >
+<path d="M10.0002 4H7.2002C6.08009 4 5.51962 4 5.0918 4.21799C4.71547 4.40973 4.40973 4.71547 4.21799 5.0918C4 5.51962 4 6.08009 4 7.2002V16.8002C4 17.9203 4 18.4801 4.21799 18.9079C4.40973 19.2842 4.71547 19.5905 5.0918 19.7822C5.5192 20 6.07899 20 7.19691 20H16.8031C17.921 20 18.48 20 18.9074 19.7822C19.2837 19.5905 19.5905 19.2839 19.7822 18.9076C20 18.4802 20 17.921 20 16.8031V14M16 5L10 11V14H13L19 8M16 5L19 2L22 5L19 8M16 5L19 8" ></path></svg>
+
+</svg
+            ><code
+              ><a
+                href="https://hungdh.dev/author/hungdh"
+                rel="noreferrer"
+                class="contact"
+                >blog</a
+              ></code
+            >
+          </div>
+
+        </div>
+      </div>
     </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
-</header>
-
-<!-- The main content area on the homepage -->
-<main id="content" class="content" role="main">
-
-    <!-- The tag below includes the post loop - partials/loop.hbs -->
-    {% include loop.html %}
-
-</main>
+  </body>
+</html>
